@@ -219,93 +219,94 @@ Importance: Ensuring the reliability and integrity of the data is crucial to the
    </td>
   </tr>
   <tr>
-   <td>tbd
+   <td>1. Establish Dev Envirnment for All
    </td>
-   <td>tbd
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>
+   <td>Aidan
    </td>
   </tr>
   <tr>
-   <td>
+   <td>2. Project Framing
    </td>
-   <td>
+   <td>Alisha
    </td>
   </tr>
   <tr>
-   <td>
+   <td>3. Project Framing
    </td>
+   <td> Gabe
    <td>
    </td>
   </tr>
   <tr>
-   <td>
+   <td> 4. Establish Dev Envirnment for All
    </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>
+   <td> Shagun
    </td>
   </tr>
   <tr>
-   <td>
+   <td> 5. Start Basic Project Frame/Draft
    </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>
+   <td>Anthony
    </td>
   </tr>
   <tr>
-   <td>
+   <td>6.  Continue Building Draft of Project
    </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>
+   <td>Aidan
    </td>
   </tr>
   <tr>
-   <td>
+   <td>7. Continue Building Project draft, get close to finish
    </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>
+   <td>Alisha
    </td>
   </tr>
   <tr>
-   <td>
+   <td>8. Finish First Draft of Project
    </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>
+   <td>Gabe
    </td>
   </tr>
   <tr>
-   <td>
+   <td>9. Test Whole project repeatedly
    </td>
-   <td>
+   <td>Shagun
+   </td>
+  </tr>
+  <tr>
+   <td>10. Start building final Draft of project using what we learned in testing
+   </td>
+   <td>Anthony
+   </td>
+  </tr>
+  <tr>
+   <td>11. Continue Building Final draft, while testing all the time
+   </td>
+   <td>Aidan
+   </td>
+  </tr>
+  <tr>
+   <td> 12. Continue Building Final Project
+   </td>
+   <td>Alisha
+   </td>
+  </tr>
+  <tr>
+   <td>13. Finish Final Draft of Project
+   </td>
+   <td>Gabe
+   </td>
+  </tr>
+  <tr>
+   <td> 14. Presentation Dry Run
+   </td>
+   <td>Shagun
+   </td>
+  </tr>
+  <tr>
+   <td> 15. Presentation 
+   </td>
+   <td>Anthony
    </td>
   </tr>
 </table>

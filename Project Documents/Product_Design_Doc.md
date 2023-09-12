@@ -2,7 +2,7 @@
 
 Problem Statement 1: Current online platforms for evaluating professors and courses lack detailed insights into the specific elements of a course, like the teaching style, required effort, and usefulness for future careers, making it difficult for students to make well-informed decisions about which classes to take. Our platform aims to bridge that gap
 
-Problem Statement 2: College students often struggle to find a single, comprehensive source of information that combines professor ratings, course difficulty, and other key course characteristics, which leads to a time-consuming and fragmented decision-making process when selecting classes. Our app aims to solve this problem
+Problem Statement 2: College students often struggle to find a single, comprehensive source of information that combines professor ratings, course difficulty, and other key course characteristics, which leads to a time-consuming and fragmented decision-making process when selecting classes. Our app aims to solve this problem by containing all relevant course information in a single place.
 
 
 ## **Customer**
@@ -205,7 +205,7 @@ Importance: Ensuring the reliability and integrity of the data is crucial to the
 * Communicate it
 * Be willing to adjust your viewpoint and consider alternative perspectives.
 * Work together to come up with mutually beneficial solutions.
-* Set up a discord group???
+* Set up a discord group
 
 
 ## Sprint Schedule
@@ -219,7 +219,7 @@ Importance: Ensuring the reliability and integrity of the data is crucial to the
    </td>
   </tr>
   <tr>
-   <td>1. Establish Dev Envirnment for All
+   <td>1. Establish Dev Environment for All
    </td>
    <td>Aidan
    </td>
@@ -238,7 +238,7 @@ Importance: Ensuring the reliability and integrity of the data is crucial to the
    </td>
   </tr>
   <tr>
-   <td> 4. Establish Dev Envirnment for All
+   <td> 4. Establish Dev Environment for All
    </td>
    <td> Shagun
    </td>
@@ -252,25 +252,25 @@ Importance: Ensuring the reliability and integrity of the data is crucial to the
   <tr>
    <td>6.  Continue Building Draft of Project
    </td>
-   <td>Aidan
+   <td>Shagun
    </td>
   </tr>
   <tr>
    <td>7. Continue Building Project draft, get close to finish
    </td>
-   <td>Alisha
+   <td>Aidan
    </td>
   </tr>
   <tr>
    <td>8. Finish First Draft of Project
    </td>
-   <td>Gabe
+   <td>Alisha
    </td>
   </tr>
   <tr>
    <td>9. Test Whole project repeatedly
    </td>
-   <td>Shagun
+   <td>Gabe
    </td>
   </tr>
   <tr>
@@ -282,13 +282,13 @@ Importance: Ensuring the reliability and integrity of the data is crucial to the
   <tr>
    <td>11. Continue Building Final draft, while testing all the time
    </td>
-   <td>Aidan
+   <td>Shagun
    </td>
   </tr>
   <tr>
    <td> 12. Continue Building Final Project
    </td>
-   <td>Alisha
+   <td>Aidan
    </td>
   </tr>
   <tr>
@@ -300,7 +300,7 @@ Importance: Ensuring the reliability and integrity of the data is crucial to the
   <tr>
    <td> 14. Presentation Dry Run
    </td>
-   <td>Shagun
+   <td>Alisha
    </td>
   </tr>
   <tr>

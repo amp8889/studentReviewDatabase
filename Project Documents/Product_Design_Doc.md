@@ -1,8 +1,6 @@
 ## Problem Statements
 
-Problem Statement 1: Current online platforms for evaluating professors and courses lack detailed insights into the specific elements of a course, like the teaching style, required effort, and usefulness for future careers, making it difficult for students to make well-informed decisions about which classes to take. Our platform aims to bridge that gap
-
-Problem Statement 2: College students often struggle to find a single, comprehensive source of information that combines professor ratings, course difficulty, and other key course characteristics, which leads to a time-consuming and fragmented decision-making process when selecting classes. Our app aims to solve this problem by containing all relevant course information in a single place.
+College students often struggle to find a single, comprehensive source of information that combines professor ratings, course difficulty, and other key course characteristics, which leads to a time-consuming and fragmented decision-making process when selecting classes. Our app aims to solve this problem by containing all relevant course information in a single place.
 
 
 ## **Customer**

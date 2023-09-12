@@ -238,7 +238,7 @@ Importance: Ensuring the reliability and integrity of the data is crucial to the
    </td>
   </tr>
   <tr>
-   <td> 4. Establish Dev Environment for All
+   <td> 4. Project Framing
    </td>
    <td> Shagun
    </td>

@@ -38,7 +38,7 @@ HTML5, CSS, JS
 
 **Server Tech**
 
-Java or Python
+Flask
 
 MySQL Workbench
 

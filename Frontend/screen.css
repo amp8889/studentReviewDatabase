@@ -2,14 +2,74 @@ html{
 background-color: #F8F0E5;
 color: #0F2C59;
 font-family: 'Mooli', sans-serif;
+font-size: 20px;
 }
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+main {
+    flex: 1; /* Allow the main content to expand and push the footer down */
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: left;
+}
+
 
 input{
 background-color: #DAC0A3;
+margin: 20px;
+border-radius: 20px;
+text-align: center;
+
 
 
 }
 button{
 background-color: #EADBC8;
+padding: 2vh;
+font-size: 20px;
+border-radius: 20px;
+
+
+}
+section{
+    text-align: center;
+    
+}
+
+
+
+#emailP{
+    padding-top: 100px;
+}
+h1{
+    text-align: center;
+
 
 }

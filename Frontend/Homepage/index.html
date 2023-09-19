@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Search Bar</title>
+    <meta charset="utf-8" />
+    <title>Search Page</title>
+    <link rel="stylesheet" href="../screen.css"/>
 </head>
 <body>
-    <h1>Search for a course:</h1>
-    
-    <form action="/search" method="get">
-        
-        <input type="text" name="query" placeholder="XYZ 123"/>
+    <header id="header">
+        <h1>Search</h1>
+        <nav id="site-nav">
+            <!-- You can add navigation links here if needed -->
+        </nav>
+    </header>
+    <main id="content">
+        <form action="/search" method="get">
+            <label for="query">Search for a course</label>
+            <input type="text" name="query" id="query" placeholder="XYZ 123" required>
+            <button type="submit" class="searchButton">Search</button>
+        </form>
 
-        <input type="submit" value="Search" />
-    </form>
+        <div id="additionalSearchBars" style="display: none;">
+            <form action="/search" method="get">
+                <label for="query2">Search for a professor</label>
+                <input type="text" name="query2" id="query2" placeholder="Name" required>
+                <button type="submit" class="searchButton">Search</button>
+            </form>
+        </div>
+    </main>
+    <footer id="footer">
+        <p>Site content for Group E</p>
+    </footer>
+
+    <script>
+        
+        const userRole = 'professor';
+
+        if (userRole === 'student') {
+            const additionalSearchBars = document.getElementById('additionalSearchBars');
+            additionalSearchBars.style.display = 'block';
+        }
+    </script>
 </body>
 </html>

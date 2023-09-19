@@ -1,6 +1,15 @@
-h5 {
-    color: blue;
+html{
+background-color: #F8F0E5;
+color: #0F2C59;
+font-family: 'Mooli', sans-serif;
 }
-h1{
-    color: orange
+
+input{
+background-color: #DAC0A3;
+
+
+}
+button{
+background-color: #EADBC8;
+
 }

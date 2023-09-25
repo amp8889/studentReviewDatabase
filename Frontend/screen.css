@@ -42,6 +42,41 @@ footer {
 }
 
 
+nav {
+    margin: 0;
+    padding: 0;
+    background-color: #089C00;
+}
+
+/* Style for the navigation list */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Style for each navigation item */
+nav li {
+    float: left;
+}
+
+/* Style for the navigation links */
+nav a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change link color on hover */
+nav a:hover {
+    background-color: #247820;
+}
+
+
+
 input{
 background-color: #B5B5B5;
 margin: 20px;

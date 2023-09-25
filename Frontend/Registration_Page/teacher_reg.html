@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>Teacher Registration</title>
         <link rel="stylesheet" href="../screen.css"/>
+        <script src="../main.js"></script>
     </head>
     <body>
         <header id="header">
@@ -17,15 +18,15 @@
                 <p>Welcome to the Teacher Registration Page.</p>
                 <p>Please enter the following credentials for Registration</p>
                 
-                <form id="registrationForm" action="register_Teacher" method="post">
+                <!-- <form id="registrationForm" action="register_Teacher" method="post"> -->
                     <p>Full name:</p>
                     <input type="text" name="Full Name" id="Full_Name2" placeholder="Enter your Name" required>
                     
                     <p>Email:</p>
                     <input type="email" name="Email" id="email2" placeholder="Enter your Email" required>
                     
-                    <p>Student ID Number:</p>
-                    <input type="text" name="ID_Number" id="ID_Number" placeholder="Enter your Student ID" required>
+                    <p>Teacher ID Number:</p>
+                    <input type="text" name="ID_Number" id="ID_Number" placeholder="Enter your Teacher ID" required>
                     
                     <p>Birthday:</p>
                     <input type="date" name="Birthday" id="Birthday" required>
@@ -41,25 +42,10 @@
                     
                     <p id="passwordMessage"></p>
                     
-                    <a href='/Frontend/Homepage/index.html/'><button type="submit" class="studentButton">Register</button>
-                </form>
+                    <a href='/Frontend/Login/index.html'><button type="submit" class="teacherButton">Register</button>
+                <!-- </form> -->
             </section>
         </main>
-    
-        <script>
-            // Password check
-            document.getElementById("registrationForm").addEventListener("submit", function (event) {
-                var password1 = document.getElementById("Password1").value;
-                var password2 = document.getElementById("Password2").value;
-                var passwordMessage = document.getElementById("passwordMessage");
-    
-                if (password1 !== password2) {
-                    passwordMessage.textContent = "Passwords do not match!";
-                    event.preventDefault(); // Prevent form submission
-                } else {
-                    passwordMessage.textContent = ""; // Clear error message
-                }
-            });
-        </script>
+
     </body>
     </html>

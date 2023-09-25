@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Student Registration</title>
+        <link rel="stylesheet" href="../screen.css"/>
+    </head>
+    <body>
+        <header id="header">
+            <h1>Student Registration</h1>
+            <nav id="site-nav">
+              
+            </nav>
+          </header>
+        <main id="content">
+            <section>
+                <p>Welcome to the Student Registration Page.</p>
+                <p>Please enter the following credentials for Registration</p>
+                
+                <form id="registrationForm" action="register_student" method="post">
+                    <p>Full name:</p>
+                    <input type="text" name="Full Name" id="Full_Name" placeholder="Enter your Name" required>
+                    
+                    <p>Email:</p>
+                    <input type="email" name="Email" id="email" placeholder="Enter your Email" required>
+                    
+                    <p>Major:</p>
+                    <input type="text" name="Major" id="Major" placeholder="Enter your Major" required>
+                    
+                    <p>Student ID Number:</p>
+                    <input type="text" name="ID_Number" id="ID_Number" placeholder="Enter your Student ID" required>
+                    
+                    <p>Birthday:</p>
+                    <input type="date" name="Birthday" id="Birthday" required>
+                    
+                    <p>School:</p>
+                    <input type="text" name="School" id="School" placeholder="Enter your School" required>
+                    
+                    <p>Password:</p>
+                    <input type="password" name="Password1" id="Password1" placeholder="Enter your Password" required>
+                    
+                    <p>Please retype your password:</p>
+                    <input type="password" name="Password2" id="Password2" placeholder="Enter your Password Again" required>
+                    
+                    <p id="passwordMessage"></p>
+                    
+                    <a href='/Frontend/Homepage/index.html/'><button type="submit" class="studentButton">Register</button>
+                </form>
+            </section>
+        </main>
+    
+        <script>
+            // Password check
+            document.getElementById("registrationForm").addEventListener("submit", function (event) {
+                var password1 = document.getElementById("Password1").value;
+                var password2 = document.getElementById("Password2").value;
+                var passwordMessage = document.getElementById("passwordMessage");
+    
+                if (password1 !== password2) {
+                    passwordMessage.textContent = "Passwords do not match!";
+                    event.preventDefault(); // Prevent form submission
+                } else {
+                    passwordMessage.textContent = ""; // Clear error message
+                }
+            });
+        </script>
+    </body>
+    </html>

@@ -1,8 +1,9 @@
 html{
-background-color: #F8F0E5;
-color: #0F2C59;
+background-color: #EBE7EE;
+color: black;
 font-family: 'Mooli', sans-serif;
 font-size: 20px;
+
 }
 
 
@@ -23,7 +24,7 @@ body{
 }
 
 header {
-    background-color: #333;
+    background-color: #089C00;
     color: white;
     padding: 20px;
 }
@@ -34,7 +35,7 @@ main {
 }
 
 footer {
-    background-color: #333;
+    background-color: #089C00;
     color: white;
     padding: 20px;
     text-align: left;
@@ -42,7 +43,7 @@ footer {
 
 
 input{
-background-color: #DAC0A3;
+background-color: #B5B5B5;
 margin: 20px;
 border-radius: 20px;
 text-align: center;
@@ -51,8 +52,16 @@ font-size: 20px;
 
 
 }
+
+input::placeholder{
+
+color: #737373;
+
+}
+
+
 button{
-background-color: #EADBC8;
+background-color: #089C00;
 padding: 2vh;
 font-size: 20px;
 border-radius: 20px;

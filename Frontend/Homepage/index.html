@@ -7,7 +7,7 @@
 </head>
 <body>
     <header id="header">
-        <h1>Search</h1>
+        <h1>Homepage</h1>
         <nav id="site-nav">
             <ul>
                 <li><a href="../Homepage/Index.html">Home</a></li>
@@ -36,11 +36,13 @@
     <footer id="footer">
         <p>Site content for Group E</p>
     </footer>
-
     <script>
-        
-        const userRole = 'professor';
-
+        // userRole is determined here for future use in other script blocks.
+        // This can eventually be removed once we establish what features should go on this page
+        const userRole = 'student'
+    </script>
+    
+    <script>
         if (userRole === 'student') {
             const additionalSearchBars = document.getElementById('additionalSearchBars');
             additionalSearchBars.style.display = 'block';

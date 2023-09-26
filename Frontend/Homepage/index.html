@@ -27,6 +27,7 @@
             </form>
         </div>
     </main>
+    
     <footer id="footer">
         <p>Site content for Group E</p>
     </footer>
@@ -39,6 +40,17 @@
             const additionalSearchBars = document.getElementById('additionalSearchBars');
             additionalSearchBars.style.display = 'block';
         }
+    </script>
+    <script>
+        // Full name here, could potentially bundle this into just 'username'
+        const firstName = 'John';
+        const lastName = 'Doe';
+    
+        // Get the footer element
+        const footer = document.getElementById('footer');
+    
+        // Update the footer text with the user's name
+        footer.innerHTML = `Welcome, ${firstName} ${lastName}`;
     </script>
 </body>
 </html>

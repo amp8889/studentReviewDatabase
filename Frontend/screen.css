@@ -48,7 +48,7 @@ nav {
     background-color: #089C00;
 }
 
-/* Style for the navigation list */
+
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -56,12 +56,10 @@ nav ul {
     overflow: hidden;
 }
 
-/* Style for each navigation item */
 nav li {
     float: left;
 }
 
-/* Style for the navigation links */
 nav a {
     display: block;
     color: white;
@@ -70,7 +68,6 @@ nav a {
     text-decoration: none;
 }
 
-/* Change link color on hover */
 nav a:hover {
     background-color: #247820;
 }

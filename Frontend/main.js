@@ -1,4 +1,3 @@
-
 // Password check
 document.getElementById("registrationForm").addEventListener("submit", function (event) {
     var password1 = document.getElementById("Password1").value;

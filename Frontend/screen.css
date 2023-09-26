@@ -102,6 +102,7 @@ font-size: 20px;
 border-radius: 20px;
 
 
+
 }
 section{
     text-align: center;
@@ -118,3 +119,15 @@ h1{
 
 
 }
+
+
+/* .regBtn{
+
+
+    display: flex;
+    text-align: center;
+    
+    background-color: #46D73F;
+
+   
+} */

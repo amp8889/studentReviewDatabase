@@ -106,6 +106,10 @@ section{
     
 }
 
+img{
+    max-width: 3em;
+}
+
 
 
 #emailP{
@@ -114,6 +118,13 @@ section{
 h1{
     text-align: center;
 
+
+}
+
+#navAccount{
+
+    float: right;
+    
 
 }
 

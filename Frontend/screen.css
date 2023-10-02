@@ -41,45 +41,6 @@ footer {
     text-align: left;
 }
 
-#navAccount {
-    float: right;
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#navAccount:hover {
-    background-color: #247820;
-}
-
-/* Style the search form within the navigation bar */
-#site-nav form {
-    display: flex;
-    align-items: center;
-    margin-left: auto; /* Push the search form to the right (centering it) */
-    margin-right: 20px; /* Add margin to separate the search bar from the "Account" link */
-}
-
-#searchBar {
-    font-size: 20px;
-    border: 3px solid #075803; /* Increase border width */
-    margin: 0;
-    padding: 12px; /* Adjust padding to make the search bar more visible */
-    border-radius: 20px; /* Add rounded border */
-    color: white; /* Set text color to white */
-}
-
-.searchButton {
-    color: white;
-    cursor: pointer;
-    border: 3px solid #075803; /* Increase border width */
-    padding: 5px; /* Adjust padding to make the button more visible */
-    margin-left: 10px; /* Add margin to separate the button from the search bar */
-}
-
 
 nav {
     margin: 0;
@@ -164,7 +125,13 @@ h1{
 
     float: right;
     
+    
 
+}
+
+.classReviews{
+
+    color: red;
 }
 
 

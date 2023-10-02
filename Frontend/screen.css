@@ -75,7 +75,7 @@ footer {
 .searchButton {
     color: white;
     cursor: pointer;
-    border: 3px solid #089C00; /* Increase border width */
+    border: 3px solid #075803; /* Increase border width */
     padding: 5px; /* Adjust padding to make the button more visible */
     margin-left: 10px; /* Add margin to separate the button from the search bar */
 }

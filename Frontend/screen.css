@@ -162,7 +162,18 @@ h1 {
     padding: 20px; 
 
 }
-
+.ProfReviews{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+    grid-template-rows: auto auto 1fr; /* Two rows for the top content and one row for the bottom */
+    gap: 10px; /* Add some gap between grid items */
+    margin: 5em;
+    margin-top: 0;
+   
+    background-color: #CBEAC5;
+    border-radius: 2em;
+    padding: 20px; /* Add padding to space content from the edges */
+}
 
 .reviewTitle {
     grid-area: 1 / 1 / 2 / 4; 
@@ -264,8 +275,25 @@ h1 {
 }
 
 
-
-
+/* CSS to style the search container */
+.search-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* CSS to style the search bar */
+  #searchBar {
+    flex-grow: 1; /* Allow the search bar to grow and take available space */
+    padding: 5px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+  }
+  
+  /* CSS to style the search button */
+  #searchButton {
+    padding: 5px 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+  }
+  
 
 
 

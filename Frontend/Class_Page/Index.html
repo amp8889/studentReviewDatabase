@@ -82,7 +82,7 @@
                 <p class="reviewDesc">"Placeholder for Review</p>
               </section>
 
-              <section class="classReviews">
+              <section class="classReviews" id="reviewFive">
                 <h3 class="reviewTitle">Review 5</h3>
                 <h4 class="reviewRating">?/5 Stars</h4>
                 <h4 class="reviewDate">"Enter Date Here"</h4>
@@ -97,8 +97,31 @@
 
             </section>
 
-            <section class="classSection" id="classLeaveReviewSection">
-                <h2>Leave review section</h2>
+            <section class="classSection" id="review-container">
+
+                
+                  <h1>Leave a Review</h1>
+                  <form id="review-form">
+                      <label for="name">Professors Name:</label>
+                      <input type="text" id="name" name="name" placeholder="Enter Prof Name" required>
+          
+                      <label for="rating">Rating:</label>
+                      <select id="rating" name="rating" required>
+                          <option value="5">5 - Excellent</option>
+                          <option value="4">4 - Very Good</option>
+                          <option value="3">3 - Average</option>
+                          <option value="2">2 - Poor</option>
+                          <option value="1">1 - Terrible</option>
+                      </select>
+          
+                      <label for="review">Your Review:</label>
+                      <textarea id="review" name="review" rows="4" required></textarea>
+          
+                      <button type="submit" id="subRevBtn">Submit Review</button>
+                  </form>
+            
+
+
 
             </section>
             

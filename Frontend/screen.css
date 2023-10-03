@@ -111,6 +111,14 @@ img{
 }
 
 
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
 
 #emailP{
     padding-top: 100px;
@@ -130,7 +138,7 @@ h1{
 }
 .classSection{
 
-background-color: grey;
+/* background-color: grey; */
 
 }
 
@@ -141,6 +149,8 @@ background-color: grey;
     grid-template-rows: auto auto 1fr; /* Two rows for the top content and one row for the bottom */
     gap: 10px; /* Add some gap between grid items */
     margin: 5em;
+    margin-top: 0;
+   
     background-color: #CBEAC5;
     border-radius: 2em;
     padding: 20px; /* Add padding to space content from the edges */
@@ -192,6 +202,7 @@ background-color: grey;
     width: 200px; /* Adjust the container width as needed */
     margin: 0 auto; /* Center the container horizontally */
     padding: 20px;
+ 
     
     
 
@@ -200,6 +211,9 @@ background-color: grey;
 
 }
 
+#reviewFive{
+        margin-bottom: 0;
+}
 .revButton{
     padding: 10px 30px;
     color: #fff;
@@ -215,9 +229,39 @@ background-color: grey;
 }
 
 
+#review-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#subRevBtn{
+
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 
 
+}
 
+
+#name[type="text"],
+#rating,
+#review{
+
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+
+}
 
 
 

@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 ## Database (switched from sqlite)##
 # app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:svr900C#@localhost/our_users'
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/our_users'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 

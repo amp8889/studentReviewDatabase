@@ -33,10 +33,37 @@
         </header>
         <main id="content">
             
-            <h2>"Account Information"</h2>
-            <h3>"Reviews Done"</h3>
-            <h3>Ability to edit their account details</h3>
-
+          <section id="account-info">
+            <h2>Account Information</h2>
+            <ul>
+              <li>
+                <span>Email:</span>
+                <span id="Account_email">user@example.com</span>
+                <button class="small-button" onclick="editInfo('email')">Edit</button>
+              </li>
+              <li>
+                <span>School ID:</span>
+                <span id="Account_school-id">123456</span>
+                <button class="small-button" onclick="editInfo('school-id')">Edit</button>
+              </li>
+              <li>
+                <span>Name:</span>
+                <span id="Account_Name">John Doe</span>
+                <button class="small-button" onclick="editInfo('name')">Edit</button>
+              </li>
+              <li>
+                <span>School:</span>
+                <span id="Account_school">Example School</span>
+                <button class="small-button" onclick="editInfo('school')">Edit</button>
+              </li>
+            </ul>
+          </section>
+      
+          <section id="reviews">
+            <h2>Reviews Done</h2>
+            <div id="user-reviews"></div>
+          </section>
+        </main>
 
 
 

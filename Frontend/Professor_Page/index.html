@@ -12,21 +12,23 @@
       <body>
         <header id="header">
           <h1>Professor Page</h1>
-          <nav id="site-nav">
-            <ul>
-                <li><h3><img src="/Assets/icon.png" alt="Class Champion Logo"></h3></li>
-                <li><a href="../Homepage/Index.html">Home</a></li>
-                <li><a href="../Class_Page/Index.html">Classes</a></li>
-                <li><a href="../Professor_Page/index.html">Professors</a></li>
-                <li><a href="../Help_Page/index.html">Help</a></li>
-                <li><a href="../Account_Page/index.html">Account</a></li> <!-- Updated href attribute -->
-                <li>
-                    <form action="/search" method="get">
-                        <input type="text" name="query" id="searchBar" placeholder="Class/Professor" required>
-                        <button type="submit" class="searchButton">Search</button>
-                    </form>
-                </li>
-            </ul>
+        <nav id="site-nav">
+          <ul>
+            <li><h3><img src="/Assets/icon.png" alt="Class Champion Logo"></h3></li>
+            <li><a href="../Homepage/Index.html">Home</a></li>
+            <li><a href="../Class_Page/Index.html">Classes</a></li>
+            <li><a href="../Professor_Page/index.html">Professors</a></li>
+            <li><a href="../Help_Page/index.html">Help</a></li>
+            <li><a href="../Account_Page/index.html">Account</a></li> <!-- Updated href attribute -->
+            <li>
+              <form action="/search" method="get">
+                <div class="search-container">
+                  <input type="text" name="query" id="searchBar" placeholder="Class/Professor" required>
+                  <button type="submit" id="searchButton">Search</button>
+                </div>
+              </form>
+            </li>
+          </ul>
         </nav>
         </header>
         <main id="content">
@@ -47,49 +49,80 @@
 
           <section class="classSection" id="ProfReviewSection">
             <h2>Top reviews of the Professor</h2>
-            <section class="classReviews">
-              <h3>Review 1: </h3>
-              <h4>?/5 Stars</h4>
-              <h4>"Enter Date Here"</h4>
-              <h4>"Class that the professor Taught"</h4>
-              <p>"Placeholder for Review</p>
+            <section class="ProfReviews">
+              <h3 class="reviewTitle">Review 1</h3>
+              <h4 class="reviewRating">5/5 Stars</h4>
+              <h4 class="reviewDate">"10/2/2023"</h4>
+              <h4 class="reviewProf">"CS485"</h4>
+              <p class="reviewDesc">"Placeholder for Review:</p>
             </section>
 
-            <section class="classReviews">
-              <h3>Review 2:</h3>
-              <h4>?/5 Stars</h4>
-              <h4>"Enter Date Here"</h4>
-              <h4>"Class that the professor Taught"</h4>
-              <p>"Placeholder for Review</p>
+            <section class="ProfReviews">
+              <h3 class="reviewTitle">Review 2</h3>
+              <h4 class="reviewRating">?/5 Stars</h4>
+              <h4 class="reviewDate">"Enter Date Here"</h4>
+              <h4 class="reviewProf">"Class that the professor Taught"</h4>
+              <p class="reviewDesc">"Placeholder for Review</p>
             </section>
 
-            <section class="classReviews">
-              <h3>Review 3:</h3>
-              <h4>?/5 Stars</h4>
-              <h4>"Enter Date Here"</h4>
-              <h4>"Class that the professor Taught"</h4>
-              <p>"Placeholder for Review</p>
+            <section class="ProfReviews">
+              <h3 class="reviewTitle">Review 3</h3>
+              <h4 class="reviewRating">?/5 Stars</h4>
+              <h4 class="reviewDate">"Enter Date Here"</h4>
+              <h4 class="reviewProf">"Class that the professor Taught"</h4>
+              <p class="reviewDesc">"Placeholder for Review</p>
             </section>
 
-            <section class="classReviews">
-              <h3>Review 4:</h3>
-              <h4>?/5 Stars</h4>
-              <h4>"Enter Date Here"</h4>
-              <h4>"Class that the professor Taught"</h4>
-              <p>"Placeholder for Review</p>
+            <section class="ProfReviews">
+              <h3 class="reviewTitle">Review 4</h3>
+              <h4 class="reviewRating">?/5 Stars</h4>
+              <h4 class="reviewDate">"Enter Date Here"</h4>
+              <h4 class="reviewProf">"Class that the professor Taught"</h4>
+              <p class="reviewDesc">"Placeholder for Review</p>
             </section>
 
-            <section class="classReviews">
-              <h3>Review 5:</h3>
-              <h4>?/5 Stars</h4>
-              <h4>"Enter Date Here"</h4>
-              <h4>"Class that the professor Taught"</h4>
-              <p>"Placeholder for Review</p>
+            <section class="ProfReviews" id="reviewFive">
+              <h3 class="reviewTitle">Review 5</h3>
+              <h4 class="reviewRating">?/5 Stars</h4>
+              <h4 class="reviewDate">"Enter Date Here"</h4>
+              <h4 class="reviewProf">"Class that the professor Taught"</h4>
+              <p class="reviewDesc">"Placeholder for Review</p>
             </section>
+
+            <section class="container">
+              <button class="revButton"><span>&#9664;</span> </button>
+              <button class="revButton"> <span>&#9654;</span></button>
+            </section>
+
           </section>
 
-          <section class="classSection" id="ProfLeaveReviewSection">
-            <h2>Leave review section</h2>
+          <section class="classSection" id="review-container">
+
+                
+            <h1>Leave a Review</h1>
+            <form id="review-form">
+                <label for="name">Class Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter Class Name" required>
+    
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating" required>
+                    <option value="5">5 - Excellent</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="3">3 - Average</option>
+                    <option value="2">2 - Poor</option>
+                    <option value="1">1 - Terrible</option>
+                </select>
+    
+                <label for="review">Your Review:</label>
+                <textarea id="review" name="review" rows="4" required></textarea>
+    
+                <button type="submit" id="subRevBtn">Submit Review</button>
+            </form>
+      
+
+
+
+      </section>
 
 
         </main>

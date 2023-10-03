@@ -299,7 +299,100 @@ h1 {
     font-size: 14px;
   }
 
+  #content {
+    background-color: #f5f5f5; /* Background color for the entire content */
+    padding: 20px; /* Add some padding to create space around the content */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+}
 
+/* Style for the issue report section */
+#issue-report {
+    background-color: #fff; /* Set to a lighter background color for contrast */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border for separation */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    width: 80%; /* Adjust the width as needed */
+    max-width: 600px; /* Set a maximum width if desired */
+    margin-bottom: 20px;
+}
+
+/* Style for the form elements */
+#issue-form label {
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+#issue-form select,
+#issue-form textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 3px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+#issue-form select {
+    height: 30px;
+}
+
+#issue-form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* Style for the submit button */
+#issue-form button {
+    display: block;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#issue-form button:hover {
+    background-color: #0056b3;
+}
+
+#faq {
+    background-color: #fff; /* Set to a lighter background color for contrast */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border for separation */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    width: 80%; /* Adjust the width as needed */
+    max-width: 600px; /* Set a maximum width if desired */
+    margin-bottom: 20px;
+}
+
+/* Styling for FAQ items */
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-question {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.faq-answer {
+    font-size: 14px;
+    color: #666;
+}
+
+
+  
 
 
 /* .regBtn{

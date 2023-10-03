@@ -31,14 +31,42 @@
           </nav>
         </header>
         <main id="content">
-            
-            <h2>"Support Page"</h2>
-            <h3>"Issue Reporting and FAQ"</h3>
-            <h3></h3>
-
-
-
-
+          <section id="content">
+            <section id="faq">
+              <h3>Frequently Asked Questions</h3>
+              <div class="faq-item">
+                  <h4 class="faq-question">How do I reset my password?</h4>
+                  <p class="faq-answer">To reset your password, go to the login page and click on the "Forgot Password" link. Follow the instructions sent to your email.</p>
+              </div>
+      
+              <div class="faq-item">
+                  <h4 class="faq-question">Is my personal information secure?</h4>
+                  <p class="faq-answer">Yes, we take your privacy seriously. Your personal information is encrypted and stored securely.</p>
+              </div>
+      
+              <div class="faq-item">
+                  <h4 class="faq-question">How can I contact customer support?</h4>
+                  <p class="faq-answer">You can contact our customer support team by emailing support@example.com or calling 1-800-123-4567.</p>
+              </div>
+          </section>
+            <section id="issue-report">
+              <h3>Report an Issue</h3>
+              <form id="issue-form" action="/submit_issue" method="post">
+                  <label for="issue-type">Issue Type:</label>
+                  <select id="issue-type" name="issue-type" required>
+                      <option value="bug">Bug</option>
+                      <option value="feature-request">Feature Request</option>
+                      <option value="other">Other</option>
+                  </select>
+      
+                  <label for="issue-description">Description:</label>
+                  <textarea id="issue-description" name="issue-description" rows="4" required></textarea>
+      
+                  <button type="submit">Submit Issue</button>
+              </form>
+          </section>
+    
+        </section>
         </main>
         <footer id="footer">
           <p>Site content for Group E</p>

@@ -8,8 +8,9 @@ from datetime import datetime
 from wtforms.widgets import TextArea
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import desc
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 
 ## Database (switched from sqlite)##
 # app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -20,7 +21,7 @@ migrate = Migrate(app, db)
 ## Login Management ##
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'f_login'
 @login_manager.user_loader
 def load_user(user_id):
     return Users.query.get(int(user_id))
@@ -60,9 +61,9 @@ class Posts(db.Model):
 class PostForm(FlaskForm):
     title = StringField("Course", validators=[DataRequired()])
     content = StringField("Content", validators=[DataRequired()], widget=TextArea())
-    author = StringField("Student", validators=[DataRequired()])
+    author = StringField("Reviewer", validators=[DataRequired()])
     slug = StringField("Rating", validators=[DataRequired()])
-    submit = SubmitField("submit")
+    submit = SubmitField("Submit")
 
 class UserForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
@@ -301,7 +302,7 @@ def login():
 def logout():
     logout_user()
     flash("You are now logged out")
-    return redirect(url_for('login'))
+    return redirect(url_for('f_login'))
 
 # Profile
 @app.route('/dashboard', methods=['GET', 'POST'])
@@ -309,3 +310,248 @@ def logout():
 def dashboard():
     form = LoginForm()
     return render_template('dashboard.html', form=form)
+
+
+
+
+
+
+# F_ADD_POST
+@app.route('/f_add_post', methods=['GET', 'POST'])
+@login_required
+def f_add_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Posts(title=form.title.data, content=form.content.data, author=form.author.data, slug=form.slug.data)
+        form.title.data = ''
+        form.content.data = ''
+        form.author.data = ''
+        form.slug.data = ''
+        db.session.add(post)
+        db.session.commit() 
+        flash("Your review is now posted")
+    return render_template("f_add_post.html", form=form)
+
+# F_ADD_PROFESSOR
+@app.route('/user/f_addProfessor', methods=['GET', 'POST'])
+def f_addProfessor():
+    name = None
+    form = UserForm()
+    if form.validate_on_submit():
+        user = Users.query.filter_by(email=form.email.data).first()
+        if user is None:
+            hashed_pw = generate_password_hash(form.password_hash.data, "sha256")
+            user = Users(username=form.username.data, name=form.name.data, email=form.email.data, favorite_color=form.favorite_color.data, password_hash=hashed_pw)
+            db.session.add(user)
+            db.session.commit()
+        name = form.name.data
+        form.name.data = ''
+        form.username.data =''
+        form.email.data = ''
+        form.favorite_color.data = ''
+        form.password_hash = ''
+        flash("Registration completed")
+    our_users = Users.query.order_by(Users.date_added)
+    return render_template("f_addProfessor.html", form=form, name=name, our_users=our_users)
+
+
+# F_ADD_STUDENT
+@app.route('/user/f_addStudent', methods=['GET', 'POST'])
+def f_addStudent():
+    name = None
+    form = UserForm()
+    if form.validate_on_submit():
+        user = Users.query.filter_by(email=form.email.data).first()
+        if user is None:
+            hashed_pw = generate_password_hash(form.password_hash.data, "sha256")
+            user = Users(username=form.username.data, name=form.name.data, email=form.email.data, favorite_color=form.favorite_color.data, password_hash=hashed_pw)
+            db.session.add(user)
+            db.session.commit()
+        name = form.name.data
+        form.name.data = ''
+        form.username.data =''
+        form.email.data = ''
+        form.favorite_color.data = ''
+        form.password_hash = ''
+        flash("Registration completed")
+    our_users = Users.query.order_by(Users.date_added)
+    return render_template("f_addStudent.html", form=form, name=name, our_users=our_users)
+
+# F_POSTS
+@app.route('/f_posts')
+def f_posts():
+    posts = Posts.query.order_by(Posts.date_posted.desc())
+    return render_template("f_posts.html", posts=posts)
+# F_DASHBOARD
+@app.route('/f_dashboard', methods=['GET', 'POST'])
+@login_required
+def f_dashboard():
+    form = LoginForm()
+    return render_template('f_dashboard.html', form=form)
+
+# F_LOGIN
+@app.route('/f_login', methods=['GET','POST'])
+def f_login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = Users.query.filter_by(username=form.username.data).first()
+        if user:
+            if check_password_hash(user.password_hash, form.password.data):
+                login_user(user)
+                flash("You are now logged in")
+                return redirect(url_for('f_dashboard'))
+            else:
+                flash("Incorrect password")
+        else:
+            flash("No such user exists")
+    return render_template('f_login.html', form=form)
+#F_LOGOUT
+@app.route('/f_logout', methods= ['GET', 'POST'])
+@login_required
+def f_logout():
+    logout_user()
+    flash("You are now logged out")
+    return redirect(url_for('f_login'))
+
+# F_DELETE
+@app.route('/f_delete/<int:id>')
+@login_required
+def f_delete(id):
+	if id == current_user.id:
+		user_to_delete = Users.query.get_or_404(id)
+		name = None
+		form = UserForm()
+
+		try:
+			db.session.delete(user_to_delete)
+			db.session.commit()
+			flash("User profile deleted")
+
+			our_users = Users.query.order_by(Users.date_added)
+			return render_template("add_user.html", 
+			form=form,
+			name=name,
+			our_users=our_users)
+
+		except:
+			flash("Whoops! There was a problem deleting user, try again...")
+			return render_template("add_user.html", 
+			form=form, name=name,our_users=our_users)
+	else:
+		flash("Deletion failed")
+		return redirect(url_for('f_dashboard'))
+
+# F_UPDATE
+@app.route('/f_update/<int:id>', methods=['GET', 'POST'])
+@login_required
+def f_update(id):
+	form = UserForm()
+	name_to_update = Users.query.get_or_404(id)
+	if request.method == "POST":
+		name_to_update.name = request.form['name']
+		name_to_update.email = request.form['email']
+		name_to_update.favorite_color = request.form['favorite_color']
+		name_to_update.username = request.form['username']
+		try:
+			db.session.commit()
+			flash("Profile is up to date")
+			return render_template("f_update.html", 
+				form=form,
+				name_to_update = name_to_update, id=id)
+		except:
+			flash("Update failed")
+			return render_template("f_update.html", 
+				form=form,
+				name_to_update = name_to_update,
+				id=id)
+	else:
+		return render_template("f_update.html", 
+				form=form,
+				name_to_update = name_to_update,
+				id = id)
+
+# F_POST
+@app.route('/f_posts/<int:id>')
+def f_post(id):
+    post = Posts.query.get_or_404(id)
+    return render_template('f_post.html', post=post)
+
+# F_EDIT_POST
+@app.route('/f_posts/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def f_edit_post(id):
+    post = Posts.query.get_or_404(id)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.author = form.author.data
+        post.slug = form.slug.data
+        post.content = form.content.data
+        db.session.add(post)
+        db.session.commit()
+        flash("Review updated")
+        return redirect(url_for('f_post', id=post.id))
+    form.title.data = post.title
+    form.author.data = post.author
+    form.slug.data = post.slug
+    form.content.data = post.content
+    return render_template('f_edit_post.html', form=form)
+
+# F_HELP
+@app.route('/f_help')
+def f_help():
+     return render_template('f_help.html')
+
+
+#SEARCH
+@app.context_processor
+def base():
+     form = SearchForm()
+     return dict(form=form)
+
+
+class SearchForm(FlaskForm):
+     searched = StringField("Searched", validators=[DataRequired()])
+     submit = SubmitField("Submit")
+
+@app.route('/search', methods=['POST'])
+def search():
+     form = SearchForm()
+     posts = Posts.query
+     if form.validate_on_submit():
+          post.searched = form.searched.data
+          posts = posts.filter(Posts.title.like('%' + post.searched + '%'))
+          posts = posts.order_by(Posts.date_posted.desc()).all()
+
+          posts2 = Posts.query.filter(Posts.content.like('%' + post.searched + '%'))
+          posts2 = posts2.order_by(Posts.date_posted.desc()).all()
+          return render_template('search.html', form=form, searched=post.searched, posts=posts, posts2=posts2)
+     
+# F_PROFESSORS
+@app.route('/f_professors')
+def f_professors():
+    posts = Posts.query.order_by(Posts.date_posted.desc())
+    return render_template("f_professors.html", posts=posts)
+
+# F_POST_DELETE
+@app.route('/posts/f_post_delete/<int:id>')
+@login_required
+def f_post_delete(id):
+    post_to_delete = Posts.query.get_or_404(id)
+    try:
+        db.session.delete(post_to_delete)
+        db.session.commit()
+        flash("Review deleted")
+        posts = Posts.query.order_by(Posts.date_posted)
+        return render_template("f_posts.html", posts=posts)
+    except:
+        flash("Deletion failed")
+        posts = Posts.query.order_by(Posts.date_posted)
+        return render_template("f_posts.html", posts=posts)
+
+# F_CLASS
+@app.route('/f_class/<string:course>', methods = ['GET'])
+def f_class(course):
+     posts = Posts.query.order_by(Posts.date_posted.desc())
+     return render_template("f_class.html", posts=posts, course=course)
+     

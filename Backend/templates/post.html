@@ -9,15 +9,16 @@
     </div>
 {% endfor %}
 
-<h1>Review for {{ post.title }}</h1>
+<h1>Review for {{ post.title }} s</h1>
 <br/>
 
-<div class="shadow p-3 mb-5 bg-body rounded"> 
+<section class="classSection" id="classReviewSection" >
     <h2>{{ post.title }} </h2>
     By: {{ post.author }} <br/>
     {{ post.date_posted }} <br/>
+    {{ post.slug }} <br/>
     {{ post.content }} <br/> <br/>
-</div>
+</section>
 <br/>
    
 <a href="{{url_for('posts')}}" class="btn btn-outline-secondary btn-sm">Back to Blog</a>

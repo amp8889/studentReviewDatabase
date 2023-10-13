@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% block content %}
+ <html lang="en">
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>  
+    {% endfor %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet"type = "text/css" href="{{ url_for('static',filename='screen.css') }}"/>
+</head>
+
+{% if id == current_user.id %}
+<body>
+   <header id="header">
+    <h1>Update Your Profile</h1>
+    
+    <nav id="site-nav">
+      <ul>
+        <li><h3><a href="{{url_for('index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('f_posts')}}">Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('f_professors')}}">Professors</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="{{url_for('f_add_post')}}">Leave a Review</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('f_help')}}">Help</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
+        {% if current_user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('f_login')}}">Login</a></li>
+
+        {% endif %}
+        <li>
+          <form method="POST" action="{{url_for('search')}}">
+            <div class="search-container">
+              {{form.hidden_tag()}}
+            <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
+            <button id="searchButton" type="submit">Search</button>
+            </div>
+          </form>
+        </li>
+        
+      </ul>
+      </nav>
+  </header>
+  <main id="content">
+        <p>
+
+        </p>
+    </br></br>
+
+    <section>
+
+        <form action="/f_update/{{ name_to_update.id }}" method="POST">
+
+            {{ form.hidden_tag() }}
+            {{ form.name.label(class="form-label") }} 
+            {{ form.name(class="form-control", value=name_to_update.name) }}
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control", value=name_to_update.username) }}
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", value=name_to_update.email) }}
+            {{ form.favorite_color.label(class="form-label") }}
+            {{ form.favorite_color(class="form-control", value=name_to_update.favorite_color) }}
+        </br></br>
+            {{ form.submit(class="btn btn-secondary") }}
+        </form>
+        <a href="{{ url_for('f_delete', id=current_user.id) }}">
+            <button class="small-button">Delete</button>
+        </a>
+    </section>
+  </main>
+<footer id="footer">
+    <p>Site content for Group E</p>
+</footer>
+</body>
+
+{% else %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  Sorry! You Can't Edit This User...
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+	<h2>Access Denied!</h2>
+	<p>Sorry, you cannot access this user profile...</p>
+
+{% endif %}
+</html>
+{% endblock %}

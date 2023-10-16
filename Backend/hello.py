@@ -14,7 +14,7 @@ app = Flask(__name__, static_folder="static")
 
 ## Database (switched from sqlite)##
 # app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/our_users'
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Link*9253@localhost/our_users'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -87,6 +87,9 @@ class LoginForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Submit")
+
+with app.app_context():
+    db.create_all()
 
 ## Routes ##
 @app.route('/') # Root
@@ -554,4 +557,6 @@ def f_post_delete(id):
 def f_class(course):
      posts = Posts.query.order_by(Posts.date_posted.desc())
      return render_template("f_class.html", posts=posts, course=course)
-     
+
+if __name__ == '__main__':
+    app.run(debug=True)

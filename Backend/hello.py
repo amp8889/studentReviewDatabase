@@ -1,4 +1,5 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
+# Various imports for the Flask application, including extensions
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, ValidationError
 from wtforms.validators import DataRequired, EqualTo, Length
@@ -10,15 +11,18 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import desc
 
+# Initializing Flask app and configurations
 app = Flask(__name__, static_folder="static")
 
 ## Database (switched from sqlite)##
 # app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/our_users'
+
+# Database setup using SQLAlchemy and Flask-Migrate
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-## Login Management ##
+# Setup for Flask-Login for user authentication
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'f_login'
@@ -28,6 +32,8 @@ def load_user(user_id):
 
 ## User Info ##
 class Users(db.Model, UserMixin):
+# Various fields for Users table and related methods
+
     id = db.Column(db.Integer, primary_key=True) 
     username = db.Column(db.String(20), nullable=False, unique=True)
     name = db.Column(db.String(200), nullable=False) 
@@ -51,6 +57,7 @@ class Users(db.Model, UserMixin):
 ## Forms ##
 app.config['SECRET_KEY'] = "4x786kj4fRt98jIq"
 class Posts(db.Model):
+# Fields for the Posts model
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     content = db.Column(db.Text)
@@ -59,6 +66,7 @@ class Posts(db.Model):
     slug = db.Column(db.String(255))
 
 class PostForm(FlaskForm):
+# Form for posting content
     title = StringField("Course", validators=[DataRequired()])
     content = StringField("Content", validators=[DataRequired()], widget=TextArea())
     author = StringField("Reviewer", validators=[DataRequired()])
@@ -66,6 +74,7 @@ class PostForm(FlaskForm):
     submit = SubmitField("Submit")
 
 class UserForm(FlaskForm):
+# Form for user data
     name = StringField("Name", validators=[DataRequired()])
     username = StringField("Username", validators=[DataRequired()])
     email = StringField("Email", validators=[DataRequired()])
@@ -75,15 +84,18 @@ class UserForm(FlaskForm):
     submit = SubmitField("Submit")
 
 class NamerForm(FlaskForm):
+# A simple form with a single field
     name = StringField("", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
 class PasswordForm(FlaskForm):
+# Form to test passwords
     email = StringField("Enter your email", validators=[DataRequired()])
     password_hash = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
 class LoginForm(FlaskForm):
+# Form for user login
     username = StringField("Username", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Submit")
@@ -156,6 +168,7 @@ def add_post():
 # View all users' posts 
 @app.route('/posts')
 def posts():
+	
     posts = Posts.query.order_by(Posts.date_posted)
     return render_template("posts.html", posts=posts)
 

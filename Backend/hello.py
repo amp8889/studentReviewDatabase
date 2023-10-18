@@ -13,31 +13,10 @@ from sqlalchemy import desc
 import time
 
 app = Flask(__name__, static_folder="static")
-from ssh_tunnel import create_ssh_tunnel
-
-    # SSH server details
-ssh_host = '44.192.127.235'  # Replace with your EC2 instance's public IP or DNS
-ssh_port = 22  # Default SSH port
-ssh_username = 'ec2-user'  # SSH username
-private_key_file = 'private-subnet.pem'
-private_key_path = os.path.join(os.path.dirname(__file__), private_key_file)
-
-ssh_key_path = private_key_path    # Path to your private key file
-
-    # Remote resource details
-remote_host = 'database.ckceiladqgeo.us-east-1.rds.amazonaws.com'  # RDS endpoint
-remote_port = 3306  # RDS port
-
-    # Local port for the tunnel
-local_port = 3306  # Use the same local port as the one you used in PowerShell
-
-    # Create and maintain the SSH tunnel until the user interrupts the script
-ssh_client, transport, tunnel = create_ssh_tunnel(local_port, remote_host, remote_port, ssh_host, ssh_port, ssh_username, ssh_key_path)
-
 
 ## Database (switched from sqlite)##
 # app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:password@localhost/our_users'
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:12345678@public-database.ckceiladqgeo.us-east-1.rds.amazonaws.com/our_users'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 try:

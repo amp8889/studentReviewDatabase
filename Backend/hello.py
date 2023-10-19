@@ -137,8 +137,9 @@ def add_user():
         form.favorite_color.data = ''
         form.password_hash = ''
         flash("Registration completed")
-    our_users = Users.query.order_by(Users.date_added)
-    return render_template("add_user.html", form=form, name=name, our_users=our_users)
+    # our_users = Users.query.order_by(Users.date_added)
+    return render_template("login.html", form=form)
+    # return render_template("add_user.html", form=form, name=name, our_users=our_users)
 
 # Post a review
 @app.route('/add-post', methods=['GET', 'POST'])
@@ -379,6 +380,7 @@ def f_addStudent():
         flash("Registration completed")
     our_users = Users.query.order_by(Users.date_added)
     return render_template("f_addStudent.html", form=form, name=name, our_users=our_users)
+    # return render_template("login.html")
 
 # F_POSTS
 @app.route('/f_posts')

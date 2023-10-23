@@ -1,5 +1,5 @@
 ## Users/Students:
-Tom: user:TomRiddle pass:harry
+Tom: user:TRiddle pass:harry
 Luna: user:LunaL pass:raven
 Jack: user:JackH pass:torchwood
 Clara: user:ClaraO pass:heart

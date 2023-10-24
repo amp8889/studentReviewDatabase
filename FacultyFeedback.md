@@ -26,7 +26,11 @@
   - From there we will random presentation order so you could first or last or anywhere in between
 
 ## Week 8 ##
-
+- Perhaps on "scenarios" slide use bullets not long, long block of text (you can use the notes view to read the text, but the viewer only see the bullets)
+- Nice to see the scenario for both audiences (students and faculty)
+- Nice basic layout of website 
+- Don't walk the web site functionality, instead consider using one of scenarios to the show the functionality.
+  
 ## Week 9 ##
 
 ## Week 10 ##

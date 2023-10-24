@@ -26,6 +26,7 @@ class Student(db.Model):
         self.password = password
 
 if __name__ == '__main__':
-    # Create the database and the "students" table
-    db.create_all()
+    with app.app_context():
+        # Create the database and the "students" table
+        db.create_all()
     app.run(debug=True)

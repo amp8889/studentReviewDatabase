@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, flash, request, redirect, url_for
 # Various imports for the Flask application, including extensions
 from flask_wtf import FlaskForm
@@ -10,19 +11,18 @@ from wtforms.widgets import TextArea
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import desc
+import time
 
 # Initializing Flask app and configurations
 app = Flask(__name__, static_folder="static")
-
 ## Database (switched from sqlite)##
 # app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/our_users'
 
-# Database setup using SQLAlchemy and Flask-Migrate
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:12345678@public-database.ckceiladqgeo.us-east-1.rds.amazonaws.com/our_users'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+## Login Management ##
 
-# Setup for Flask-Login for user authentication
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'f_login'
@@ -100,6 +100,9 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+with app.app_context():
+    db.create_all()
+
 ## Routes ##
 @app.route('/') # Root
 
@@ -146,8 +149,9 @@ def add_user():
         form.favorite_color.data = ''
         form.password_hash = ''
         flash("Registration completed")
-    our_users = Users.query.order_by(Users.date_added)
-    return render_template("add_user.html", form=form, name=name, our_users=our_users)
+    # our_users = Users.query.order_by(Users.date_added)
+    return render_template("login.html", form=form)
+    # return render_template("add_user.html", form=form, name=name, our_users=our_users)
 
 # Post a review
 @app.route('/add-post', methods=['GET', 'POST'])
@@ -219,58 +223,58 @@ def delete_post(id):
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 @login_required
 def update(id):
-	form = UserForm()
-	name_to_update = Users.query.get_or_404(id)
-	if request.method == "POST":
-		name_to_update.name = request.form['name']
-		name_to_update.email = request.form['email']
-		name_to_update.favorite_color = request.form['favorite_color']
-		name_to_update.username = request.form['username']
-		try:
-			db.session.commit()
-			flash("Profile is up to date")
-			return render_template("update.html", 
-				form=form,
-				name_to_update = name_to_update, id=id)
-		except:
-			flash("Update failed")
-			return render_template("update.html", 
-				form=form,
-				name_to_update = name_to_update,
-				id=id)
-	else:
-		return render_template("update.html", 
-				form=form,
-				name_to_update = name_to_update,
-				id = id)
+    form = UserForm()
+    name_to_update = Users.query.get_or_404(id)
+    if request.method == "POST":
+        name_to_update.name = request.form['name']
+        name_to_update.email = request.form['email']
+        name_to_update.favorite_color = request.form['favorite_color']
+        name_to_update.username = request.form['username']
+        try:
+            db.session.commit()
+            flash("Profile is up to date")
+            return render_template("update.html", 
+                form=form,
+                name_to_update = name_to_update, id=id)
+        except:
+            flash("Update failed")
+            return render_template("update.html", 
+                form=form,
+                name_to_update = name_to_update,
+                id=id)
+    else:
+        return render_template("update.html", 
+                form=form,
+                name_to_update = name_to_update,
+                id = id)
 
 # Delete account
 @app.route('/delete/<int:id>')
 @login_required
 def delete(id):
-	if id == current_user.id:
-		user_to_delete = Users.query.get_or_404(id)
-		name = None
-		form = UserForm()
+    if id == current_user.id:
+        user_to_delete = Users.query.get_or_404(id)
+        name = None
+        form = UserForm()
 
-		try:
-			db.session.delete(user_to_delete)
-			db.session.commit()
-			flash("User profile deleted")
+        try:
+            db.session.delete(user_to_delete)
+            db.session.commit()
+            flash("User profile deleted")
 
-			our_users = Users.query.order_by(Users.date_added)
-			return render_template("add_user.html", 
-			form=form,
-			name=name,
-			our_users=our_users)
+            our_users = Users.query.order_by(Users.date_added)
+            return render_template("add_user.html", 
+            form=form,
+            name=name,
+            our_users=our_users)
 
-		except:
-			flash("Whoops! There was a problem deleting user, try again...")
-			return render_template("add_user.html", 
-			form=form, name=name,our_users=our_users)
-	else:
-		flash("Deletion failed")
-		return redirect(url_for('dashboard'))
+        except:
+            flash("Whoops! There was a problem deleting user, try again...")
+            return render_template("add_user.html", 
+            form=form, name=name,our_users=our_users)
+    else:
+        flash("Deletion failed")
+        return redirect(url_for('dashboard'))
 
 # Testing passwords
 @app.route('/test_pw', methods=['GET', 'POST'])
@@ -389,6 +393,7 @@ def f_addStudent():
         flash("Registration completed")
     our_users = Users.query.order_by(Users.date_added)
     return render_template("f_addStudent.html", form=form, name=name, our_users=our_users)
+    # return render_template("login.html")
 
 # F_POSTS
 @app.route('/f_posts')
@@ -430,58 +435,58 @@ def f_logout():
 @app.route('/f_delete/<int:id>')
 @login_required
 def f_delete(id):
-	if id == current_user.id:
-		user_to_delete = Users.query.get_or_404(id)
-		name = None
-		form = UserForm()
+    if id == current_user.id:
+        user_to_delete = Users.query.get_or_404(id)
+        name = None
+        form = UserForm()
 
-		try:
-			db.session.delete(user_to_delete)
-			db.session.commit()
-			flash("User profile deleted")
+        try:
+            db.session.delete(user_to_delete)
+            db.session.commit()
+            flash("User profile deleted")
 
-			our_users = Users.query.order_by(Users.date_added)
-			return render_template("add_user.html", 
-			form=form,
-			name=name,
-			our_users=our_users)
+            our_users = Users.query.order_by(Users.date_added)
+            return render_template("add_user.html", 
+            form=form,
+            name=name,
+            our_users=our_users)
 
-		except:
-			flash("Whoops! There was a problem deleting user, try again...")
-			return render_template("add_user.html", 
-			form=form, name=name,our_users=our_users)
-	else:
-		flash("Deletion failed")
-		return redirect(url_for('f_dashboard'))
+        except:
+            flash("Whoops! There was a problem deleting user, try again...")
+            return render_template("add_user.html", 
+            form=form, name=name,our_users=our_users)
+    else:
+        flash("Deletion failed")
+        return redirect(url_for('f_dashboard'))
 
 # F_UPDATE
 @app.route('/f_update/<int:id>', methods=['GET', 'POST'])
 @login_required
 def f_update(id):
-	form = UserForm()
-	name_to_update = Users.query.get_or_404(id)
-	if request.method == "POST":
-		name_to_update.name = request.form['name']
-		name_to_update.email = request.form['email']
-		name_to_update.favorite_color = request.form['favorite_color']
-		name_to_update.username = request.form['username']
-		try:
-			db.session.commit()
-			flash("Profile is up to date")
-			return render_template("f_update.html", 
-				form=form,
-				name_to_update = name_to_update, id=id)
-		except:
-			flash("Update failed")
-			return render_template("f_update.html", 
-				form=form,
-				name_to_update = name_to_update,
-				id=id)
-	else:
-		return render_template("f_update.html", 
-				form=form,
-				name_to_update = name_to_update,
-				id = id)
+    form = UserForm()
+    name_to_update = Users.query.get_or_404(id)
+    if request.method == "POST":
+        name_to_update.name = request.form['name']
+        name_to_update.email = request.form['email']
+        name_to_update.favorite_color = request.form['favorite_color']
+        name_to_update.username = request.form['username']
+        try:
+            db.session.commit()
+            flash("Profile is up to date")
+            return render_template("f_update.html", 
+                form=form,
+                name_to_update = name_to_update, id=id)
+        except:
+            flash("Update failed")
+            return render_template("f_update.html", 
+                form=form,
+                name_to_update = name_to_update,
+                id=id)
+    else:
+        return render_template("f_update.html", 
+                form=form,
+                name_to_update = name_to_update,
+                id = id)
 
 # F_POST
 @app.route('/f_posts/<int:id>')
@@ -513,33 +518,33 @@ def f_edit_post(id):
 # F_HELP
 @app.route('/f_help')
 def f_help():
-     return render_template('f_help.html')
+    return render_template('f_help.html')
 
 
 #SEARCH
 @app.context_processor
 def base():
-     form = SearchForm()
-     return dict(form=form)
+    form = SearchForm()
+    return dict(form=form)
 
 
 class SearchForm(FlaskForm):
-     searched = StringField("Searched", validators=[DataRequired()])
-     submit = SubmitField("Submit")
+    searched = StringField("Searched", validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
 @app.route('/search', methods=['POST'])
 def search():
-     form = SearchForm()
-     posts = Posts.query
-     if form.validate_on_submit():
-          post.searched = form.searched.data
-          posts = posts.filter(Posts.title.like('%' + post.searched + '%'))
-          posts = posts.order_by(Posts.date_posted.desc()).all()
+    form = SearchForm()
+    posts = Posts.query
+    if form.validate_on_submit():
+        post.searched = form.searched.data
+        posts = posts.filter(Posts.title.like('%' + post.searched + '%'))
+        posts = posts.order_by(Posts.date_posted.desc()).all()
 
-          posts2 = Posts.query.filter(Posts.content.like('%' + post.searched + '%'))
-          posts2 = posts2.order_by(Posts.date_posted.desc()).all()
-          return render_template('search.html', form=form, searched=post.searched, posts=posts, posts2=posts2)
-     
+        posts2 = Posts.query.filter(Posts.content.like('%' + post.searched + '%'))
+        posts2 = posts2.order_by(Posts.date_posted.desc()).all()
+        return render_template('search.html', form=form, searched=post.searched, posts=posts, posts2=posts2)
+    
 # F_PROFESSORS
 @app.route('/f_professors')
 def f_professors():
@@ -565,6 +570,8 @@ def f_post_delete(id):
 # F_CLASS
 @app.route('/f_class/<string:course>', methods = ['GET'])
 def f_class(course):
-     posts = Posts.query.order_by(Posts.date_posted.desc())
-     return render_template("f_class.html", posts=posts, course=course)
-     
+    posts = Posts.query.order_by(Posts.date_posted.desc())
+    return render_template("f_class.html", posts=posts, course=course)
+
+if __name__ == '__main__':
+    app.run(debug=True)

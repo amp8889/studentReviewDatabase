@@ -26,7 +26,7 @@
 
           <nav id="site-nav">
             <ul>
-              <li><h3><a href="{{url_for('index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
+              <li><h3><a href="{{url_for('main.index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
           </ul>
           </nav>
         </header>
@@ -51,9 +51,9 @@
               </form>
 
               <!-- <a href='user/f_addStudent'><button class="regBtn">Student Register</button></a> -->
-              <a href="{{ url_for('f_addStudent') }}"><button class="regBtn">Student Register</button></a>
+              <a href="{{ url_for('main.f_addstudent') }}"><button class="regBtn">Student Register</button></a>
               <!-- <a href='user/f_addProfessor'><button class="regBtn">Professor Register</button></a> -->
-              <a href="{{ url_for('f_addProfessor') }}"><button class="regBtn">Professor Register</button></a>
+              <a href="{{ url_for('main.f_addProfessor') }}"><button class="regBtn">Professor Register</button></a>
             </section>
         </main>
         <footer id="footer">

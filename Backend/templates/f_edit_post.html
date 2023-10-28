@@ -21,34 +21,32 @@
      <h1>Edit Post</h1>
      
      <nav id="site-nav">
-      <ul>
-          <li>
-              <h3><a href="{{ url_for('index') }}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('f_class') }}">Students</a></li>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('f_professors') }}">Professors</a></li>
+        <ul>
+          <li><h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Students</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
 
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('f_help') }}">Help</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('f_dashboard') }}">Account</a></li>
-
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
           {% if current_user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
           {% else %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('f_login') }}">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
+  
           {% endif %}
           <li>
-              <form method="POST" action="{{ url_for('search') }}">
-                  <div class="search-container">
-                      {{ form.hidden_tag() }}
-                      <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
-                      <button id="searchButton" type="submit">Search</button>
-                  </div>
-              </form>
+            <form method="POST" action="{{url_for('main.search')}}">
+              <div class="search-container">
+                {{form.hidden_tag()}}
+              <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
+              <button id="searchButton" type="submit">Search</button>
+              </div>
+            </form>
           </li>
-      </ul>
-  </nav>
+          
+        </ul>
+        </nav>
    </header>
   </br></br>
   <section class="classSection" id="review-container">    
@@ -80,7 +78,7 @@
 <br/>
 
 <main id="content">
-<a href="{{ url_for('f_dashboard') }}">
+<a href="{{ url_for('main.f_dashboard') }}">
   <button class="small-button">Back to Account Page</button>
 </a>
 

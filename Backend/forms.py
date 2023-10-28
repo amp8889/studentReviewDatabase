@@ -1,7 +1,34 @@
+import os
+from flask import Flask, render_template, flash, request, redirect, url_for, session
+# Various imports for the Flask application, including extensions
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, EqualTo
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, ValidationError, SelectField,TextAreaField
+from wtforms.validators import DataRequired, EqualTo, Length
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from datetime import datetime
 from wtforms.widgets import TextArea
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import desc
+from sqlalchemy.orm import relationship
+import time
+
+
+class ProfessorReviewForm(FlaskForm):
+    class_name = StringField('Professor Name', validators=[DataRequired()])
+    rating = SelectField('Rating', choices=[('5', '5 - Excellent'), ('4', '4 - Very Good'), ('3', '3 - Average'), ('2', '2 - Poor'), ('1', '1 - Terrible')], validators=[DataRequired()])
+    review_content = TextAreaField('Your Review', validators=[DataRequired()])
+    submit = SubmitField('Submit Professor Review')
+    
+class ClassReviewForm(FlaskForm):
+    professor_name = StringField('Professor Name', validators=[DataRequired()])
+    rating = SelectField('Rating', choices=[('5', '5 - Excellent'), ('4', '4 - Very Good'), ('3', '3 - Average'), ('2', '2 - Poor'), ('1', '1 - Terrible')], validators=[DataRequired()])
+    review_content = TextAreaField('Your Review', validators=[DataRequired()])
+    submit = SubmitField('Submit Class Review')
+
+
+
 
 class UserForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
@@ -25,7 +52,8 @@ class ProfForm(FlaskForm):
     password_hash = PasswordField('Password', validators=[DataRequired(), EqualTo('password_hash2', message='Passwords must match')])
     password_hash2 = PasswordField('Confirm Password', validators=[DataRequired()])  # Not in the database, just for password confirmation
     submit = SubmitField("Submit")
-
+    
+    
 class NamerForm(FlaskForm):
 # A simple form with a single field
     name = StringField("", validators=[DataRequired()])

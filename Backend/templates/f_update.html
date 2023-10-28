@@ -24,22 +24,21 @@
     
     <nav id="site-nav">
       <ul>
-        <li><h3><a href="{{url_for('index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
-        <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{url_for('f_posts')}}">Students</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{url_for('f_professors')}}">Professors</a></li>
+        <li><h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
 
-        <li class="nav-item"><a class="nav-link" href="{{url_for('f_add_post')}}">Leave a Review</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{url_for('f_help')}}">Help</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{url_for('f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
         {% if current_user.is_authenticated %}
-        <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
         {% else %}
-        <li class="nav-item"><a class="nav-link" href="{{url_for('f_login')}}">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
 
         {% endif %}
         <li>
-          <form method="POST" action="{{url_for('search')}}">
+          <form method="POST" action="{{url_for('main.search')}}">
             <div class="search-container">
               {{form.hidden_tag()}}
             <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
@@ -58,7 +57,7 @@
     </br></br>
 
     <section>
-      <form method="POST" action="{{ url_for('f_update', id=id) }}">
+      <form method="POST" action="{{ url_for('main.f_update', id=id) }}">
         {{ form.hidden_tag() }}
         {{ form.name.label(class="form-label") }} 
         {{ form.name(class="form-control", value=user_to_update.name) }}
@@ -83,7 +82,7 @@
           {{ form.submit(class="btn btn-secondary") }}
       </form>
       
-      <a href="{{ url_for('f_delete', id=user_to_update.id) }}">
+      <a href="{{ url_for('main.f_delete', id=user_to_update.id) }}">
           <button class="small-button">Delete</button>
       </a>
   </section>

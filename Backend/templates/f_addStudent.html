@@ -12,17 +12,6 @@
     {% if name %}
 	<h1>User Added!</h1>
 	<br/><br/>
-    <table class="table table-hover table-bordered table-striped">
-
-    {% for our_user in our_users %}
-        <tr>
-        <td>{{ our_user.id }}. <a href="{{ url_for('update', id=our_user.id)}}">{{ our_user.name }}</a> - {{ our_user.email }} - {{ our_user.favorite_color }} - 
-            <a href="{{ url_for('delete', id=our_user.id)}}">Delete</a></td>
-        </tr>
-    {% endfor %}
-
-    </table>
-        
 
     {% else %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +27,7 @@
             <h1>Student Registration</h1>
             <nav id="site-nav">
                 <ul>
-                  <li><h3><a href="{{url_for('index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
+                  <li><h3><a href="{{url_for('main.index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
                   </ul>
                   </nav>
           </header>
@@ -48,7 +37,7 @@
                 <p>Please enter the following credentials for registration</p>
                 <br/>
                 
-                <form method="POST" action="{{ url_for('f_addStudent') }}">
+                <form method="POST" action="{{ url_for('main.f_addStudent') }}">
                     {{ form.hidden_tag() }}
                     
                     {{ form.name.label(class="form-label") }}

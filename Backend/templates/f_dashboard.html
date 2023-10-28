@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 {% block content %}
- <html lang="en">
+<html lang="en">
 
-    {% for message in get_flashed_messages() %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    {% endfor %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
-      <head>
-        <meta charset="utf-8" />
-        <title>Account Page</title>
-        <link rel="stylesheet" type = "text/css" href="{{ url_for('static',filename='screen.css') }}"/>
-      </head>
-      <body>
-        <header id="header">
-          <h1>Account Page</h1>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+<head>
+    <meta charset="utf-8" />
+    <title>Account Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='screen.css') }}" />
+</head>
 
-          <nav id="site-nav">
+<body>
+    <header id="header">
+        <h1>Account Page</h1>
+
+        <nav id="site-nav">
             <ul>
-              <li><h3><a href="{{url_for('index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('f_posts')}}">Students</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('f_professors')}}">Professors</a></li>
-    
-              <li class="nav-item"><a class="nav-link" href="{{url_for('f_add_post')}}">Leave a Review</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('f_help')}}">Help</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
-              {% if current_user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></li>
-              {% else %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('f_login')}}">Login</a></li>
-      
-              {% endif %}
-              <li>
-                <form method="POST" action="{{url_for('search')}}">
-                  <div class="search-container">
-                    {{form.hidden_tag()}}
-                  <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
-                  <button id="searchButton" type="submit">Search</button>
-                  </div>
-                </form>
-              </li>
-              
-            </ul>
-          </nav>
-          
-        </header>
-        <main id="content">
-            
-          <section id="account-info">
-            <h2>Account Information</h2>
-          </br>
-            <ul id="account_list">
-                <li>
-                    <span>Name:</span>
-                    <span id="Account_Name">{{current_user.name}}</span>
-                </li>
-                <li>
-                    <span>Username:</span>
-                    <span id="Account_Name">{{current_user.username}}</span>
-                </li>
-                <li>
-                    <span>User ID:</span>
-                    <span id="Account_Name">{{current_user.id}}</span>
-                </li>
-              <li>
-                <span>Email:</span>
-                <span id="Account_email">{{current_user.email}}</span>
-              </li>
-              <li>
-                <span>University:</span>
-                <span id="Account_school">{{current_user.favorite_color}}</span>
-              </li>
-              <li>
-                <span>Date Joined:</span>
-                <span id="Account_Name">{{current_user.date_added.strftime('%m/%d/%Y')}}</span>
-              </li>
-            </ul>
-            <br/>
-          </br>
+                <li><h3><a href="{{url_for('index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('f_class')}}">Students</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('f_professors')}}">Professors</a></li>
 
+                <li class="nav-item"><a class="nav-link" href="{{url_for('f_help')}}">Help</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('f_dashboard')}}">Account</a></li>
+
+                {% if current_user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{url_for('f_login')}}">Login</a></li>
+                {% endif %}
+
+                <li>
+                    <form method="POST" action="{{url_for('search')}}">
+                        <div class="search-container">
+                            {{form.hidden_tag()}}
+                            <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
+                            <button id="searchButton" type="submit">Search</button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+    <main id="content">
+
+      <section id="account-info">
+        <h2>Account Information</h2>
+        <br>
+        <ul id="account_list">
+            <li>
+                <span>Name:</span>
+                <span id="Account_Name">{{ current_user.name }}</span>
+            </li>
+            <li>
+                <span>Username:</span>
+                <span id="Account_Name">{{ current_user.username }}</span>
+            </li>
+            {% if user_role == 'student' %}
+            <li>
+                <span>Student ID:</span>
+                <span id="Account_Name">{{ current_user.student_id }}</span>
+            </li>
+            <li>
+                <span>Major:</span>
+                <span id="Account_major">{{ current_user.major }}</span>
+            </li>
+            {% elif user_role == 'professor' %}
+            <li>
+                <span>Teacher ID:</span>
+                <span id="Account_teacher_id">{{ current_user.teacher_id }}</span>
+            </li>
+            {% endif %}
+            <li>
+                <span>Email:</span>
+                <span id="Account_email">{{ current_user.email }}</span>
+            </li>
+            <li>
+                <span>University:</span>
+                <span id="Account_school">{{ current_user.school_id }}</span>
+            </li>
+            <li>
+                <span>Date Joined:</span>
+                <span id="Account_Name">{{ current_user.date_added.strftime('%m/%d/%Y') }}</span>
+            </li>
+        </ul>
+        <br>
+        <br>
+
+    
             <a href="{{ url_for('f_logout') }}">
                 <button class="small-button">Logout</button>
             </a>
@@ -94,15 +106,14 @@
             <a href="{{ url_for('f_delete', id=current_user.id) }}">
                 <button class="small-button">Delete</button>
             </a>
-           
-          </section>
-      
-        </main>
 
-        </main>
-        <footer id="footer">
-          <p>Site content for Group E</p>
-      </footer>
-    </body>
- </html>
-  {% endblock %}
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <p>Site content for Group E</p>
+    </footer>
+</body>
+</html>
+{% endblock %}

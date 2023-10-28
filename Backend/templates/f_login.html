@@ -50,8 +50,10 @@
                     </br>
               </form>
 
-              <a href='user/f_addStudent'><button class="regBtn">Student Register</button></a>
-              <a href='user/f_addProfessor'><button class="regBtn">Professor Register</button></a>
+              <!-- <a href='user/f_addStudent'><button class="regBtn">Student Register</button></a> -->
+              <a href="{{ url_for('f_addStudent') }}"><button class="regBtn">Student Register</button></a>
+              <!-- <a href='user/f_addProfessor'><button class="regBtn">Professor Register</button></a> -->
+              <a href="{{ url_for('f_addProfessor') }}"><button class="regBtn">Professor Register</button></a>
             </section>
         </main>
         <footer id="footer">

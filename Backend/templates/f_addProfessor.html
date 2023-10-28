@@ -47,39 +47,36 @@
                 <p>Welcome to the Professor Registration page</p>
                 <p>Please enter the following credentials for registration</p>
                 <br/>
-                
-                <form method="POST">
+                <form method="POST" action="{{ url_for('f_addProfessor') }}">
                     {{ form.hidden_tag() }}
-            
-                    {{ form.name.label(class="form-label") }}
-            
-                    {{ form.name(class="form-control") }}
-            
-                    {{ form.username.label(class="form-label") }}
-            
-                    {{ form.username(class="form-control") }}
-            
-                    {{ form.email.label(class="form-label") }}
-            
-                    {{ form.email(class="form-control") }}
-            
-                    {{ form.favorite_color.label(class="form-label") }}
-            
-                    {{ form.favorite_color(class="form-control") }}
                     
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(id="Full_Name", class="form-control", placeholder="Enter your Name", required="required") }}
+                    
+                    {{ form.username.label(class="form-label") }}
+                    {{ form.username(id="Username", class="form-control", placeholder="Enter your Username", required="required") }}    
+
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(id="email", class="form-control", placeholder="Enter your Email", required="required") }}
+                
+                    {{ form.teacher_id.label(class="form-label") }}
+                    {{ form.teacher_id(id="ID_Number", class="form-control", placeholder="Enter your Teacher ID", required="required") }}
+                
+                    {{ form.birthday.label(class="form-label") }}
+                    {{ form.birthday(id="Birthday", class="form-control", type="date", required="required") }}
+                
+                    {{ form.school_id.label(class="form-label") }}
+                    {{ form.school_id(id="School", class="form-control", placeholder="Enter your School", required="required") }}
+                
                     {{ form.password_hash.label(class="form-label") }}
-            
-                    {{ form.password_hash(class="form-control") }}
-            
+                    {{ form.password_hash(id="Password1", class="form-control", placeholder="Enter your Password", required="required") }}
+                
                     {{ form.password_hash2.label(class="form-label") }}
-            
-                    {{ form.password_hash2(class="form-control") }}
+                    {{ form.password_hash2(id="Password2", class="form-control", placeholder="Retype Password", required="required") }}
                     <br/>
-            
                     {{ form.submit(class="btn btn-secondary") }}
-            
-            
                 </form>
+
             </section>
         </main>
         <footer id="footer">

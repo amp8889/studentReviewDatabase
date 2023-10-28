@@ -24,11 +24,18 @@
 		  <p class="card-text">
 			<strong>Name: </strong>{{ current_user.name }}<br/>
 			<strong>Username: </strong>{{ current_user.username }}<br/>
-			<strong>User ID: </strong>{{ current_user.id }}<br/>
 			<strong>Email: </strong>{{ current_user.email }}<br/>
-			<strong>University: </strong>{{ current_user.favorite_color }}<br/>
+			<strong>University: </strong>{{ current_user.school_id }}<br/>
 			<strong>Date Joined: </strong>{{ current_user.date_added }}<br/>
 		  </p>
+		  {% if current_user.is_student %}
+		  <!-- Student-specific content -->
+			<strong>Student ID: </strong>{{ current_user.student_id }}<br/>
+			<strong>Major: </strong>{{ current_user.major }}<br/>
+	  	  {% elif current_user.is_professor %}
+			<strong>Teacher ID: </strong>{{ current_user.teacher_id }}<br/>
+
+
 		  <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Logout</a>
 		  <a href="{{ url_for('update', id=current_user.id) }}" class="btn btn-secondary btn-sm">Update</a>
 		  <a href="{{ url_for('delete', id=current_user.id) }}" class="btn btn-danger btn-sm">Delete</a>

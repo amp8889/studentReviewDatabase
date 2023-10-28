@@ -58,25 +58,36 @@
     </br></br>
 
     <section>
-
-        <form action="/f_update/{{ name_to_update.id }}" method="POST">
-
-            {{ form.hidden_tag() }}
-            {{ form.name.label(class="form-label") }} 
-            {{ form.name(class="form-control", value=name_to_update.name) }}
-            {{ form.username.label(class="form-label") }}
-            {{ form.username(class="form-control", value=name_to_update.username) }}
-            {{ form.email.label(class="form-label") }}
-            {{ form.email(class="form-control", value=name_to_update.email) }}
-            {{ form.favorite_color.label(class="form-label") }}
-            {{ form.favorite_color(class="form-control", value=name_to_update.favorite_color) }}
-        </br></br>
-            {{ form.submit(class="btn btn-secondary") }}
-        </form>
-        <a href="{{ url_for('f_delete', id=current_user.id) }}">
-            <button class="small-button">Delete</button>
-        </a>
-    </section>
+      <form method="POST" action="{{ url_for('f_update', id=id) }}">
+        {{ form.hidden_tag() }}
+        {{ form.name.label(class="form-label") }} 
+        {{ form.name(class="form-control", value=user_to_update.name) }}
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control", value=user_to_update.username) }}
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control", value=user_to_update.email) }}
+        {{ form.school_id.label(class="form-label") }}
+        {{ form.school_id(class="form-control", value=user_to_update.school_id) }}
+          
+        {% if user_type == 'student' %}
+          {{ form.student_id.label(class="form-label") }}
+          {{ form.student_id(class="form-control", value=user_to_update.student_id) }}
+          {{ form.major.label(class="form-label") }}
+          {{ form.major(class="form-control", value=user_to_update.major) }}
+        {% elif user_type == 'professor' %}
+          {{ form.teacher_id.label(class="form-label") }}
+          {{ form.teacher_id(class="form-control", value=user_to_update.teacher_id) }}
+        {% endif %}
+          
+          <br>
+          {{ form.submit(class="btn btn-secondary") }}
+      </form>
+      
+      <a href="{{ url_for('f_delete', id=user_to_update.id) }}">
+          <button class="small-button">Delete</button>
+      </a>
+  </section>
+  
   </main>
 <footer id="footer">
     <p>Site content for Group E</p>

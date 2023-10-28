@@ -340,41 +340,73 @@ def name():
 #     return render_template('post.html', post=post)
 
 # Edit review
-@app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
-@login_required
-def edit_post(id):
-    post = Posts.query.get_or_404(id)
-    form = PostForm()
-    if form.validate_on_submit():
-        post.title = form.title.data
-        post.author = form.author.data
-        post.slug = form.slug.data
-        post.content = form.content.data
-        db.session.add(post)
-        db.session.commit()
-        flash("Review updated")
-        return redirect(url_for('post', id=post.id))
-    form.title.data = post.title
-    form.author.data = post.author
-    form.slug.data = post.slug
-    form.content.data = post.content
-    return render_template('edit_post.html', form=form)
+# @app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
+# @login_required
+# def edit_post(id):
+#     post = Posts.query.get_or_404(id)
+#     form = PostForm()
+#     if form.validate_on_submit():
+#         post.title = form.title.data
+#         post.author = form.author.data
+#         post.slug = form.slug.data
+#         post.content = form.content.data
+#         db.session.add(post)
+#         db.session.commit()
+#         flash("Review updated")
+#         return redirect(url_for('post', id=post.id))
+#     form.title.data = post.title
+#     form.author.data = post.author
+#     form.slug.data = post.slug
+#     form.content.data = post.content
+#     return render_template('edit_post.html', form=form)
 
-# Delete a review
-@app.route('/posts/delete/<int:id>')
+# # Delete a review
+# @app.route('/posts/delete/<int:id>')
+# @login_required
+# def delete_post(id):
+#     post_to_delete = Posts.query.get_or_404(id)
+#     try:
+#         db.session.delete(post_to_delete)
+#         db.session.commit()
+#         flash("Review deleted")
+#         posts = Posts.query.order_by(Posts.date_posted)
+#         return render_template("posts.html", posts=posts)
+#     except:
+#         flash("Deletion failed")
+#         posts = Posts.query.order_by(Posts.date_posted)
+#         return render_template("posts.html", posts=posts)
+from flask import abort
+
+@app.route('/f_users_posts/delete/<string:post_type>/<int:post_id>')
 @login_required
-def delete_post(id):
-    post_to_delete = Posts.query.get_or_404(id)
-    try:
-        db.session.delete(post_to_delete)
+def delete_post(post_type, post_id):
+    # Ensure post_type is either 'class' or 'professor' to determine which type of post to delete
+    print(post_type)
+    print(post_id)
+    if post_type == 'class':
+        print("classssew")
+        post = Class_Posts.query.get(post_id)
+        print(post)
+    elif post_type == 'professor':
+        print("prof")
+        post = Professor_Posts.query.get(post_id)
+        print(post)
+
+
+    # Check if the current user is the author of the post
+    # Delete the post
+    if post and post.student_name == current_user.name:
+        # Delete the post
+        db.session.delete(post)
         db.session.commit()
-        flash("Review deleted")
-        posts = Posts.query.order_by(Posts.date_posted)
-        return render_template("posts.html", posts=posts)
-    except:
-        flash("Deletion failed")
-        posts = Posts.query.order_by(Posts.date_posted)
-        return render_template("posts.html", posts=posts)
+        flash("Post deleted", "success")
+    else:
+        abort(403)
+
+    # Redirect to the user's posts page
+    return redirect(url_for('f_dashboard'))
+
+
 
 # Change Profile Info
 # @app.route('/update/<int:id>', methods=['GET', 'POST'])
@@ -900,25 +932,58 @@ def f_post(id):
     return render_template('f_post.html', post=post)
 
 # F_EDIT_POST
-@app.route('/f_posts/edit/<int:id>', methods=['GET', 'POST'])
-@login_required
-def f_edit_post(id):
-    post = Posts.query.get_or_404(id)
-    form = PostForm()
+# @app.route('/f_posts/edit/<int:id>', methods=['GET', 'POST'])
+# @login_required
+# def f_edit_post(id):
+#     post = Posts.query.get_or_404(id)
+#     form = PostForm()
+#     if form.validate_on_submit():
+#         post.title = form.title.data
+#         post.author = form.author.data
+#         post.slug = form.slug.data
+#         post.content = form.content.data
+#         db.session.add(post)
+#         db.session.commit()
+#         flash("Review updated")
+#         return redirect(url_for('f_post', id=post.id))
+#     form.title.data = post.title
+#     form.author.data = post.author
+#     form.slug.data = post.slug
+#     form.content.data = post.content
+#     return render_template('f_edit_post.html', form=form)
+# Edit and update a review (class or professor)
+# Edit and update a review (class or professor)
+@app.route('/edit_post/<post_type>/<int:id>', methods=['GET', 'POST'])
+def f_edit_post(post_type, id):
+    post = None
+
+    if post_type == 'class':
+        is_professor_review = False
+        post = Class_Posts.query.get_or_404(id)
+        form = ClassReviewForm()
+    elif post_type == 'professor':
+        is_professor_review = True
+        post = Professor_Posts.query.get_or_404(id)
+        form = ProfessorReviewForm()
+    else:
+        flash("Invalid post type")
+        return redirect(url_for('f_dashboard'))
+
     if form.validate_on_submit():
-        post.title = form.title.data
-        post.author = form.author.data
-        post.slug = form.slug.data
-        post.content = form.content.data
-        db.session.add(post)
+        if post_type == 'class':
+            post.professor_name = form.professor_name.data
+        elif post_type == 'professor':
+            post.class_name = form.class_name.data
+        post.rating = form.rating.data
+        post.content = form.review_content.data
         db.session.commit()
         flash("Review updated")
-        return redirect(url_for('f_post', id=post.id))
-    form.title.data = post.title
-    form.author.data = post.author
-    form.slug.data = post.slug
-    form.content.data = post.content
-    return render_template('f_edit_post.html', form=form)
+        return redirect(url_for('f_dashboard'))
+
+    is_professor_review = (post_type == 'professor')
+    return render_template('f_edit_post.html', form=form, is_professor_review=is_professor_review)
+
+
 
 # F_HELP
 @app.route('/f_help')
@@ -1083,6 +1148,20 @@ def f_class(course_name):
         reviews = []
 
     return render_template('f_class.html', course_description=description, course_name=course_name, form=form, reviews=reviews)
+
+@app.route('/f_users_posts/<username>')
+@login_required  # Requires the user to be logged in
+def f_users_posts(username):
+    # Query the database to get the user's posts from both tables
+    user = Students.query.filter_by(username=username).first()
+    if user:
+        class_posts = Class_Posts.query.filter_by(student_name=user.name).all()
+        professor_posts = Professor_Posts.query.filter_by(student_name=user.name).all()
+        return render_template('f_users_posts.html', user=user, class_posts=class_posts, professor_posts=professor_posts)
+    else:
+        # Handle the case when the user doesn't exist
+        flash('User not found', 'danger')
+        return redirect(url_for('index'))  # Redirect to the homepage or another appropriate page
 
 
 

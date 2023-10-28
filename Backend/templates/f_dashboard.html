@@ -106,6 +106,9 @@
             <a href="{{ url_for('f_delete', id=current_user.id) }}">
                 <button class="small-button">Delete</button>
             </a>
+            <a href="{{ url_for('f_users_posts', username=current_user.username) }}">
+                <button class="small-button">Your Posts</button>
+            </a>
 
         </section>
 

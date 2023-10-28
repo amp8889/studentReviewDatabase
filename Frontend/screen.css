@@ -395,6 +395,15 @@ h1 {
  #account_list{
     list-style: none;
  } 
+ .edit-delete-buttons {
+    position: relative;
+    text-align: center; /* Center the buttons horizontally within the container */
+}
+
+.edit-link, .delete-link {
+    margin: 0 10px; /* Adjust the margin as needed */
+    /* Other styling for the buttons */
+}
 
 
 /* .regBtn{

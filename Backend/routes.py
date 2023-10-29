@@ -467,7 +467,45 @@ def f_users_posts(username):
     else:
         # Handle the case when the user doesn't exist
         flash('User not found', 'danger')
-        return redirect(url_for('index'))  # Redirect to the homepage or another appropriate page
+        return redirect(url_for('main.index'))  # Redirect to the homepage or another appropriate page
 
+@main_bp.route('/addProfessor', methods=['GET', 'POST'])
+@login_required
+def addProfessor():
+    form = addProfessorForm()
+    if form.validate_on_submit():
+            professor = Professor(
+                name=form.name.data,
+                description=form.description.data,
+            )
+            db.session.add(professor)
+            db.session.commit()
+
+            form.name.data = ''
+            form.description.data = ''
+            return redirect(url_for('main.addProfessor'))
+
+    return render_template("addProfessor.html", form=form)
+
+
+@login_required
+@main_bp.route('/addClass', methods=['GET', 'POST'])
+def addClass():
+    form = addClassForm()
+    if form.validate_on_submit():
+            c = Class(
+                name=form.name.data,
+                description=form.description.data,
+                class_name=form.class_name.data
+            )
+            db.session.add(c)
+            db.session.commit()
+
+            form.name.data = ''
+            form.description.data = ''
+            form.class_name.data = ''
+            return redirect(url_for('main.addClass'))
+
+    return render_template("addClass.html", form=form)
 
 

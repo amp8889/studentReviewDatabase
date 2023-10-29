@@ -9,3 +9,6 @@ Jake: whytheburger pass:viking
 Snape: user:SSnape pass:Lily
 Lupin: user:RemusL pass:werewolf
 Smith: user:JSmith pass:doctor
+
+## Users/Admins:
+Admin: user:Admin pass:admin

@@ -77,6 +77,7 @@ class Professors(db.Model, UserMixin):
 class Class(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
+    class_name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
     # posts = db.relationship('Class_Posts', backref='course', lazy=True)
 

@@ -27,7 +27,16 @@ class ClassReviewForm(FlaskForm):
     review_content = TextAreaField('Your Review', validators=[DataRequired()])
     submit = SubmitField('Submit Class Review')
 
+class addProfessorForm(FlaskForm):
+    name = StringField('Professor Name', validators=[DataRequired()])
+    description= StringField('Description', validators=[DataRequired()])
 
+
+class addClassForm(FlaskForm):
+    name = StringField('Class Number(ex; CS422)', validators=[DataRequired()])
+    class_name = StringField('Class Name', validators=[DataRequired()])
+    description= StringField('Description', validators=[DataRequired()])
+    
 
 
 class UserForm(FlaskForm):

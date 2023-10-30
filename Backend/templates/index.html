@@ -24,7 +24,7 @@
           <ul>
             <li><h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
             <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Students</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
             <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
   
             <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
@@ -56,8 +56,8 @@
         
           <section class="classSection" id="classReviewSection">
             <h2>Your Reviews</h2>
-            </br>
-            </br>
+            
+            
 
             <div class="classReviewsContainer">
                 <h3>Your Class Reviews</h3>
@@ -86,12 +86,7 @@
                     <h4 class="reviewProf">{{ review.professor_name }}</h4>
                     <p class="reviewDesc">{{ review.content }}</p>
 
-                    <!-- Edit and Delete Buttons for the student's reviews -->
-                    <div class="edit-delete-buttons">
-                        <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='professor') }}" class="edit-link">Edit</a>
-                        <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='professor') }}" class="delete-link">Delete</a>
-                        
-                    </div>
+                    
                 </section>
                 {% endfor %}
             </div>

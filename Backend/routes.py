@@ -24,8 +24,7 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
-    first_name = "John"
-    return render_template('index.html', first_name=first_name)
+    return redirect(url_for('main.f_login'))
 
 # Invalid route(s) or server error
 # @main_bp.errorhandler(404)

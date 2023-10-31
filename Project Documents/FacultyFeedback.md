@@ -37,6 +37,9 @@
 - GitHub flow - https://docs.github.com/en/get-started/quickstart/github-flow
 
 ## Week 10 ##
+- The dry run and final presentation dates were incorrectly listed on Tuesday.  The syllabus has been changed to show Dry run (11/20) and final presentation (11/27) dates changed to be on Monday (e.g., normal class time).
+- Make sure all the stories you need for your primary scenario are on the board. 
+- Consider labeling all the stories for your primary scenario to make it easy to identify and work on those stories.
 
 ## Week 11 ##
 

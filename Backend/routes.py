@@ -22,9 +22,12 @@ main_bp = Blueprint('main', __name__)
 ## Routes ##
 @main_bp.route('/') # Root
 
-@main_bp.route('/')
+@main_bp.route('/index') #Homepage
 def index():
-    return redirect(url_for('main.f_login'))
+    reviews_table1 = Professor_Posts.query.order_by(Professor_Posts.rating.desc()).limit(5).all()
+    reviews_table2 = Class_Posts.query.order_by(Class_Posts.rating.desc()).limit(5).all()
+    return render_template('index.html', professor_posts=reviews_table1, class_posts=reviews_table2)
+
 
 # Invalid route(s) or server error
 # @main_bp.errorhandler(404)
@@ -511,3 +514,11 @@ def addClass():
 @main_bp.errorhandler(404)
 def not_found(e):
     return render_template('404.html')
+
+@main_bp.before_request
+def before_request():
+    if not current_user.is_authenticated and request.endpoint != 'main.f_login':
+        return redirect(url_for('main.f_login'))
+    else:
+        # Log the user out automatically
+        f_logout()

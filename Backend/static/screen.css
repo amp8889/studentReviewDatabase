@@ -40,6 +40,29 @@ footer {
     color: white;
     padding: 20px;
     text-align: left;
+    font-size: 12px;
+    
+
+
+}
+
+footer ul{
+
+    list-style-type: none;
+
+}
+footer li{
+
+    margin: 20px;
+
+
+}
+
+footer p{
+
+font-size: 20px;
+margin: 20px;
+
 
 }
 
@@ -135,6 +158,12 @@ h1 {
     text-align: center;
 
 }
+
+
+
+
+
+
 
 
 #navAccount {

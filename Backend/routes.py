@@ -53,7 +53,7 @@ def delete_post(post_type, post_id):
         # Delete the post
         db.session.delete(post)
         db.session.commit()
-        flash("Post deleted", "success")
+        # flash("Post deleted", "success")
     else:
         abort(403)
 
@@ -77,7 +77,7 @@ def login():
         if user:
             if check_password_hash(user.password_hash, form.password.data):
                 login_user(user)
-                flash("You are now logged in")
+                # flash("You are now logged in")
                 return redirect(url_for('dashboard'))
             else:
                 flash("Incorrect password")
@@ -90,7 +90,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash("You are now logged out")
+    # flash("You are now logged out")
     return redirect(url_for('main.f_login'))
 
 # Profile
@@ -131,7 +131,7 @@ def f_addProfessor():
             form.school_id.data = ''
             form.password_hash.data = ''
 
-            flash("Professor registration completed")
+            # flash("Professor registration completed")
             return redirect(url_for('main.f_login'))
 
     return render_template("f_addProfessor.html", form=form, name=name)
@@ -170,7 +170,7 @@ def f_addstudent():
             form.school_id.data = ''
             form.password_hash.data = ''
 
-            flash("Student registration completed")
+            # flash("Student registration completed")
             return redirect(url_for('main.f_login'))
 
     return render_template("f_addstudent.html", form=form, name=name)
@@ -197,13 +197,13 @@ def f_login():
             login_user(student)
             user_role = "student"
             session['user_role'] = user_role
-            flash("You are now logged in as a student")
+            # flash("You are now logged in as a student")
             return redirect(url_for('main.f_dashboard', user_role=user_role))
         elif professor and check_password_hash(professor.password_hash, form.password.data):
             login_user(professor)
             user_role = "professor"
             session['user_role'] = user_role
-            flash("You are now logged in as a professor")
+            # flash("You are now logged in as a professor")
             return redirect(url_for('main.f_dashboard', user_role=user_role))
         else:
             flash("Incorrect username or password")
@@ -214,7 +214,7 @@ def f_login():
 @login_required
 def f_logout():
     logout_user()
-    flash("You are now logged out")
+    # flash("You are now logged out")
     return redirect(url_for('main.f_login'))
 
 
@@ -239,25 +239,25 @@ def f_delete(id):
                 user_type = 'professor'
                 form = ProfForm()
             else:
-                flash("Invalid user type")
+                # flash("Invalid user type")
                 return redirect(url_for('some_error_route'))
         else:
-            flash("User not found")
+            # flash("User not found")
             return redirect(url_for('some_error_route'))
 
         try:
             db.session.delete(user_to_delete)
             db.session.commit()
-            flash("User profile deleted")
+            # flash("User profile deleted")
 
             # Redirect to a suitable template
             return redirect(url_for('main.f_dashboard'))
 
         except Exception as e:
-            flash("Whoops! There was a problem deleting the user, try again...")
+            # flash("Whoops! There was a problem deleting the user, try again...")
             return redirect(url_for('main.f_dashboard'))
     else:
-        flash("Deletion failed")
+        # flash("Deletion failed")
         return redirect(url_for('main.f_dashboard'))
 
 
@@ -280,10 +280,10 @@ def f_update(id):
             user_type = 'professor'
             form = ProfForm()
         else:
-            flash("Invalid user type")
+            # flash("Invalid user type")
             return redirect(url_for('some_error_route'))
     else:
-        flash("User not found")
+        # flash("User not found")
         return redirect(url_for('some_error_route'))
 
     if request.method == "POST":
@@ -305,7 +305,7 @@ def f_update(id):
                 user_to_update.school_id = form.school_id.data
 
             db.session.commit()
-            flash("Profile is up to date")
+            # flash("Profile is up to date")
             return redirect(url_for('main.f_dashboard'))
         except Exception as e:
             flash("Update failed: " + str(e))
@@ -326,7 +326,7 @@ def f_edit_post(post_type, id):
         post = Professor_Posts.query.get_or_404(id)
         form = ProfessorReviewForm()
     else:
-        flash("Invalid post type")
+        # flash("Invalid post type")
         return redirect(url_for('main.f_dashboard'))
 
     if form.validate_on_submit():
@@ -337,7 +337,7 @@ def f_edit_post(post_type, id):
         post.rating = form.rating.data
         post.content = form.review_content.data
         db.session.commit()
-        flash("Review updated")
+        # flash("Review updated")
         return redirect(url_for('main.f_dashboard'))
 
     is_professor_review = (post_type == 'professor')
@@ -468,7 +468,7 @@ def f_users_posts(username):
         return render_template('f_users_posts.html', user=user, class_posts=class_posts, professor_posts=professor_posts)
     else:
         # Handle the case when the user doesn't exist
-        flash('User not found', 'danger')
+        # flash('User not found', 'danger')
         return redirect(url_for('main.index'))  # Redirect to the homepage or another appropriate page
 
 @main_bp.route('/addProfessor', methods=['GET', 'POST'])

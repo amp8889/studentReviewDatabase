@@ -13,4 +13,4 @@ This Flask application provides a platform for users to review university course
 
 - Error Handling: Custom error pages for 404 (Page Not Found) and 500 (Server Error).
 
-- Styling: Separate styled routes starting with 'f_' (presumably for frontend styling).
+- Styling: Separate styled routes starting with 'f_' (for frontend styling).

@@ -40,8 +40,6 @@ HTML5, CSS, JS
 
 Flask
 
-MySQL Workbench
-
 AWS 
 
 ## Top Application Capabilities

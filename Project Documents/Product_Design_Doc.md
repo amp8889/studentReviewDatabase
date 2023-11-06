@@ -42,6 +42,8 @@ Flask
 
 MySQL Workbench
 
+AWS 
+
 ## Top Application Capabilities
 
 ### Comprehensive Course and Professor Reviews

@@ -30,9 +30,9 @@ def index():
 
 
 # Invalid route(s) or server error
-# @main_bp.errorhandler(404)
-# def page_not_found(e):
-#     return render_template("404.html"), 404
+@main_bp.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
 @main_bp.errorhandler(500)
 def page_not_found(e):
     return render_template("500.html"), 500
@@ -509,11 +509,6 @@ def addClass():
             return redirect(url_for('main.addClass'))
 
     return render_template("addClass.html", form=form)
-
-
-@main_bp.errorhandler(404)
-def not_found(e):
-    return render_template('404.html')
 
 @main_bp.before_request
 def before_request():

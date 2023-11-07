@@ -52,17 +52,24 @@
           </ul>
           </nav>
     </header>
-    <main id="content">
+    <main id="content" >
 
       <section class="classSection" id="classDescSection">
         <h2>Class Description</h2></br>
-        {% if course_description %}
-            <p>{{ course_description }}</p>
-            </br></br>
-        {% else %}
-            <p>No description available for this course.</p>
-            </br></br>
-        {% endif %}
+        {% for c in course_list %}
+
+        <section class="classReviews">
+          <h3 class="reviewTitle">{{c.name}} - {{c.class_name}}</h3>
+          <p class="reviewDesc">{{ c.description }}</p>
+
+          <!-- Edit and Delete Buttons for the student's reviews -->
+         
+      </section>
+
+
+
+           </br></br>
+        {% endfor %}
       </section>
 
         <section class="classSection" id="classReviewSection">

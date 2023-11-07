@@ -448,14 +448,14 @@ def f_class(course_name):
 
         # Save the review to the database or perform other necessary actions
         # You can create a Review model and save the review data to the database here
-        reviews = Class_Posts.query.filter_by(class_name=course_name).all()
+        course_list = Class.query.order_by(Class.id)
 
 
     else:
         description = None  # Set to None for a blank page
-        reviews = []
-
-    return render_template('f_class.html', course_description=description, course_name=course_name, form=form, reviews=reviews)
+        course_list = Class.query.order_by(Class.id)
+        
+    return render_template('f_class.html', course_description=description, course_name=course_name, form=form, course_list=course_list)
 
 @main_bp.route('/f_users_posts/<username>')
 @login_required  # Requires the user to be logged in

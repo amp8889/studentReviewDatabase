@@ -28,7 +28,7 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 app.register_blueprint(main_bp)
-
+#
 
 with app.app_context():
     db.create_all()

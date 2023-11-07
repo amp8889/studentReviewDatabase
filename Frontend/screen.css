@@ -23,7 +23,7 @@ body {
 }
 
 header {
-    background-color: #089C00;
+    background-color: #2596be;
     color: white;
     padding: 20px;
 
@@ -36,7 +36,7 @@ main {
 }
 
 footer {
-    background-color: #089C00;
+    background-color: #2596be;
     color: white;
     padding: 20px;
     text-align: left;
@@ -47,7 +47,7 @@ footer {
 nav {
     margin: 0;
     padding: 0;
-    background-color: #089C00;
+    background-color: #2596be;
 
 }
 
@@ -133,7 +133,7 @@ form {
 
 h1 {
     text-align: center;
-
+    text-shadow: 1px 1px 2px #bbbbbb;
 }
 
 
@@ -172,6 +172,7 @@ h1 {
     width: 100%; 
     margin: 0 auto; 
     padding: 20px; 
+    margin-top: 50px
 }
 
 

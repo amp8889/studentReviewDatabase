@@ -149,6 +149,31 @@ h1 {
 
 }
 
+/* Everything before .classReviews is for the headers on the homepage */
+#intro {
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Website introduction */
+#intro h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #bbbbbb;
+}
+
+/* Used to place the "Popular Classes and Recent Reviews" and 
+    "Popular Teaches and Reviews" in separate columns
+*/
+.homepage-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
 
 .classReviews {
     display: grid;

@@ -1,7 +1,17 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <br/>
-        <h1>404 Error</h1>
-        <p>teststs</p>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <!-- Link to your existing stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='screen.css') }}">
+</head>
+<body>
+    <div class="container-404">
+        <h1>404</h1>
+        <p>Oops! The page you're looking for can't be found.</p>
+        <a href="{{ url_for('main.index') }}" class="btn btn-primary">Go Home</a>
+    </div>
+</body>
+</html>

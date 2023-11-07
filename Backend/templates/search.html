@@ -52,7 +52,8 @@
               {% if result.type == 'Course' %}
                 <a href="{{ url_for('main.f_class', course_name=result.name) }}">{{ result.name }}</a>
               {% elif result.type == 'Professor' %}
-                <a href="{{ url_for('main.f_professors', professor_name=result.name) }}">{{ result.name }}</a>
+                <a href="{{ url_for('main.f_professors', professor_name=result.name, searched=True) }}">{{ result.name }}</a>
+
               {% endif %}
             </div>
           {% endfor %}

@@ -385,11 +385,13 @@ def search():
 
     
 
-@main_bp.route('/f_professors', defaults={'professor_name': None})
-@main_bp.route('/f_professors/<professor_name>', methods=['GET', 'POST'])
-def f_professors(professor_name):
+@main_bp.route('/f_professors', defaults={'professor_name': None, 'searched': None})
+@main_bp.route('/f_professors/<professor_name>/<searched>', methods=['GET', 'POST'])
+def f_professors(professor_name,searched):
     form = ProfessorReviewForm()
-
+    search_boolean = False
+    if searched == "True": 
+        search_boolean = True
     if professor_name is not None:
         # Retrieve the class description based on the course_name
         description = get_prof_description(professor_name)
@@ -420,13 +422,16 @@ def f_professors(professor_name):
         reviews = []
         
     professors = Professor.query.order_by(Professor.id)
-    return render_template('f_professors.html', prof_description=description, professor_name=professor_name, form=form, reviews=reviews, professors=professors)
+    return render_template('f_professors.html', prof_description=description, professor_name=professor_name, form=form, reviews=reviews, professors=professors,searched=search_boolean)
 
     
-@main_bp.route('/f_class', defaults={'course_name': None})
-@main_bp.route('/f_class/<course_name>', methods=['GET', 'POST'])
-def f_class(course_name):
+@main_bp.route('/f_class', defaults={'course_name': None, 'searched': None})
+@main_bp.route('/f_class/<course_name>/<searched>', methods=['GET', 'POST'])
+def f_class(course_name,searched):
     form = ClassReviewForm()
+    search_boolean = False
+    if searched == "True": 
+        search_boolean = True
     if course_name is not None:
         # Retrieve the class description based on the course_name
         description = get_class_description(course_name)
@@ -457,7 +462,7 @@ def f_class(course_name):
         description = None  # Set to None for a blank page
         course_list = Class.query.order_by(Class.id)
         
-    return render_template('f_class.html', course_description=description, course_name=course_name, form=form, course_list=course_list)
+    return render_template('f_class.html', course_description=description, course_name=course_name, form=form, course_list=course_list,searched=search_boolean)
 
 @main_bp.route('/f_users_posts/<username>')
 @login_required  # Requires the user to be logged in

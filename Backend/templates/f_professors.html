@@ -54,14 +54,14 @@
         <main id="content">
 
           <section class="classSection" id="classDescSection">
-            <h2>Professor Description</h2></br>
-            {% if prof_description %}
-                <p>{{ prof_description }}</p>
-                </br></br>
-            {% else %}
-                <p>No description available for this Professor.</p>
-                </br></br>
-            {% endif %}
+            <h2>Professors Descriptions</h2></br>
+            {% for p in professors %}
+            <section class="classReviews">
+                <h3 class="reviewTitle">{{ p.name }}</h3>
+                <p class="reviewDesc">{{ p.description }}</p>
+  
+            </section>
+            {% endfor %}
           </section>
     
             <section class="classSection" id="classReviewSection">

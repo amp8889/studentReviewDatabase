@@ -389,6 +389,7 @@ def search():
 @main_bp.route('/f_professors/<professor_name>', methods=['GET', 'POST'])
 def f_professors(professor_name):
     form = ProfessorReviewForm()
+
     if professor_name is not None:
         # Retrieve the class description based on the course_name
         description = get_prof_description(professor_name)
@@ -410,15 +411,16 @@ def f_professors(professor_name):
             form.rating.data = ''
             form.review_content.data = ''
 
-        # Save the review to the database or perform other necessary actions
+        #  Save the review to the database or perform other necessary actions
         # You can create a Review model and save the review data to the database here
         reviews = Professor_Posts.query.filter_by(professor_name=professor_name).all()
         
     else:
         description = None  # Set to None for a blank page
         reviews = []
-
-    return render_template('f_professors.html', prof_description=description, professor_name=professor_name, form=form, reviews=reviews)
+        
+    professors = Professor.query.order_by(Professor.id)
+    return render_template('f_professors.html', prof_description=description, professor_name=professor_name, form=form, reviews=reviews, professors=professors)
 
     
 @main_bp.route('/f_class', defaults={'course_name': None})

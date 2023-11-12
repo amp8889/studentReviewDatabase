@@ -52,15 +52,22 @@
             </nav>
         </header>
         <main id="content">
-
           <section class="classSection" id="classDescSection">
-            <h2>Professor Description</h2></br>
-            {% if prof_description %}
-                <p>{{ prof_description }}</p>
-                </br></br>
+            {% if searched == true %}
+              <h2>Professor Description</h2>
+              <p>{{ prof_description }}</p>
             {% else %}
-                <p>No description available for this Professor.</p>
-                </br></br>
+              <h2>Professors Descriptions</h2>
+              <ul>
+                {% for p in professors %}
+                  <li>
+                    <section class="classReviews">
+                      <h3 class="reviewTitle">{{ p.name }}</h3>
+                      <p class="reviewDesc">{{ p.description }}</p>
+                    </section>
+                  </li>
+                {% endfor %}
+              </ul>
             {% endif %}
           </section>
     

@@ -19,7 +19,7 @@ from forms import *
 from routes import main_bp
 
 
-# Initializing Flask app and configurations
+#  Initializing Flask app and configurations
 app = Flask(__name__, static_folder="static")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:12345678@public-database.ckceiladqgeo.us-east-1.rds.amazonaws.com/our_users'
@@ -28,7 +28,7 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 app.register_blueprint(main_bp)
-
+#
 
 with app.app_context():
     db.create_all()

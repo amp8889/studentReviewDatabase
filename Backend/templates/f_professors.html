@@ -1,136 +1,159 @@
 <!DOCTYPE html>
 {% block content %}
-  <html lang="en">
+<html lang="en">
 
-    {% for message in get_flashed_messages() %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    {% endfor %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
-      <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet"type = "text/css" href="{{ url_for('static',filename='screen.css') }}"/>
-      </head>
-      <body>
-        <header id="header">
-          <h1>Professor Reviews Page</h1>
-          <nav id="site-nav">
-            <ul>
-              <li><h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
-    
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
-              {% if current_user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
-              {% if current_user.username == 'admin' %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
-              {% endif %}
-              {% else %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
-      
-              {% endif %}
-              <li>
-                <form method="POST" action="{{url_for('main.search')}}">
-                  <div class="search-container">
-                    {{form.hidden_tag()}}
-                  <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
-                  <button id="searchButton" type="submit">Search</button>
-                  </div>
-                </form>
-              </li>
-              
-            </ul>
-            </nav>
-        </header>
-        <main id="content">
-          <section class="classSection" id="classDescSection">
-            {% if searched == true %}
-              <h2>Professor Description</h2>
-              <p>{{ prof_description }}</p>
-            {% else %}
-              <h2>Professors Descriptions</h2>
-              <ul>
-                {% for p in professors %}
-                  <li>
-                    <section class="classReviews">
-                      <h3 class="reviewTitle">{{ p.name }}</h3>
-                      <p class="reviewDesc">{{ p.description }}</p>
-                    </section>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='screen.css') }}" />
+</head>
+
+<body>
+  <header id="header">
+    <h1>Professor Reviews Page</h1>
+    <nav id="site-nav">
+      <ul>
+        <li>
+          <h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li>
+        <!-- Updated href attribute -->
+        {% if current_user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
+        {% if current_user.username == 'admin' %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
+        {% endif %}
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
+
+        {% endif %}
+        <li>
+          <form method="POST" action="{{url_for('main.search')}}">
+            <div class="search-container">
+              {{form.hidden_tag()}}
+              <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
+              <button id="searchButton" type="submit">Search</button>
+            </div>
+          </form>
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Top Banner Ad Placeholder -->
+  <div class="top-banner-ad" style="
+background-color: #f2f2f2; /* Light grey background */
+text-align: center; /* Center the text horizontally */
+padding: 20px; /* Padding to make it look like a box */
+margin: 30px auto 20px; /* Center the box with margin top and bottom */
+border: 1px solid #ccc; /* Border to define the box */
+border-radius: 8px; /* Slightly rounded corners for the box */
+max-width: 80%; /* Max width for the ad, relative to parent container */
+box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for some depth */
+font-size: 24px; /* Larger font size for the text */
+display: block; /* Block display to fill the width */
+">
+    Your ad could be here
+  </div>
+
+  <main id="content">
+    <section class="classSection" id="classDescSection">
+      {% if searched == true %}
+      <h2>Professor Description</h2>
+      <p>{{ prof_description }}</p>
+      {% else %}
+      <h2>Professors Descriptions</h2>
+      <ul>
+        {% for p in professors %}
+        <li>
+          <section class="classReviews">
+            <h3 class="reviewTitle">{{ p.name }}</h3>
+            <p class="reviewDesc">{{ p.description }}</p>
           </section>
-    
-            <section class="classSection" id="classReviewSection">
-                <h2>Recent Reviews</h2>
-                </br>
-                </br>
-    
-                <div class="classReviewsContainer">
-                  {% for review in reviews %}
-                    <section class="classReviews">
-                      <h3 class="reviewTitle">Review {{ loop.index }}</h3>
-                      <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>
-                      <h4 class="reviewDate">{{ review.date_posted }}</h4>
-                      <h4 class="reviewProf">{{ review.class_name }}</h4>
-                      <p class="reviewDesc">{{ review.content }}</p>
-                    </section>
-                  {% endfor %}
-                </div>
-                
-    
-            <section class="container">
-                <button class="revButton" id="prevButton"><span>&#9664;</span> </button>
-                <button class="revButton" id="nextButton"><span>&#9654;</span></button>
-            </section>
-    
-            <section class="classSection" id="review-container">
-              <h1>Leave a Review</h1>
-              <form id="review-form" method="POST">
-                  {{ form.hidden_tag() }}  {# Add the CSRF token #}
-                  
-                  <label for="class_name">Class Name:</label>
-                  {{ form.class_name(class="your-css-class") }}
-          
-                  <label for="rating">Rating:</label>
-                  {{ form.rating(class="your-css-class") }}
-          
-                  <label for="review_content">Your Review:</label>
-                  {{ form.review_content(class="your-css-class") }}
-          
-                  <button type="submit" id="subRevBtn" onclick="this.disabled=true;this.form.submit();">Submit Review</button>
-    
-              </form>
-          </section>
-          
-          
-          
-    
-        </main>
-        <footer id="footer">
-        
-          <ul>
-              <li>About us</li>
-              <li>Our Mission</li>
-              <li>Help</li>
-              <li>Contact Us</li>
-              <li>Future Plans</li>
-  
-  
-  
-          </ul>
-      <p>Site content for Course Reviewer (Group E)</p>
-      </footer>
-    </body>
-  </html>
-  {% endblock %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </section>
+
+    <section class="classSection" id="classReviewSection">
+      <h2>Recent Reviews</h2>
+      </br>
+      </br>
+
+      <div class="classReviewsContainer">
+        {% for review in reviews %}
+        <section class="classReviews">
+          <h3 class="reviewTitle">Review {{ loop.index }}</h3>
+          <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>
+          <h4 class="reviewDate">{{ review.date_posted }}</h4>
+          <h4 class="reviewProf">{{ review.class_name }}</h4>
+          <p class="reviewDesc">{{ review.content }}</p>
+        </section>
+        {% endfor %}
+      </div>
+
+
+      <section class="container">
+        <button class="revButton" id="prevButton"><span>&#9664;</span> </button>
+        <button class="revButton" id="nextButton"><span>&#9654;</span></button>
+      </section>
+
+      <section class="classSection" id="review-container">
+        <h1>Leave a Review</h1>
+        <form id="review-form" method="POST">
+          {{ form.hidden_tag() }} {# Add the CSRF token #}
+
+          <label for="class_name">Class Name:</label>
+          {{ form.class_name(class="your-css-class") }}
+
+          <label for="rating">Rating:</label>
+          {{ form.rating(class="your-css-class") }}
+
+          <label for="review_content">Your Review:</label>
+          {{ form.review_content(class="your-css-class") }}
+
+          <button type="submit" id="subRevBtn" onclick="this.disabled=true;this.form.submit();">Submit Review</button>
+
+        </form>
+      </section>
+
+
+
+
+  </main>
+  <footer id="footer">
+
+    <ul>
+      <li>About us</li>
+      <li>Our Mission</li>
+      <li>Help</li>
+      <li>Contact Us</li>
+      <li>Future Plans</li>
+
+
+
+    </ul>
+    <p>Site content for Course Reviewer (Group E)</p>
+  </footer>
+</body>
+
+</html>
+{% endblock %}

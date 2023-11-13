@@ -79,12 +79,11 @@
       <h2>Class Description</h2>
       <p>{{ course_description }}</p>
       {% else %}
-      <h2>Class Descriptions</h2>
-      <ul class="descriptions"">
+      <h2>Class Description</h2></br>
       {% for c in course_list %}
       <li>
         <section class="classReviews">
-          <h3 class="reviewTitle">{{ c.name }}</h3>
+          <h3 class="reviewTitle">{{ c.name }} - {{c.class_name}}</h3>
           <p class="reviewDesc">{{ c.description }}</p>
         </section>
       </li>
@@ -95,11 +94,13 @@
 
 
 
-    <section class="classSection" id="classReviewSection">
+     <section class="classSection" id="classReviewSection">
       <h2>Recent Reviews</h2>
+      </br>
+      </br>
 
       <div class="classReviewsContainer">
-        {% for review in reviews %}
+        {% for review in course_list %}
         <section class="classReviews">
           <h3 class="reviewTitle">Review {{ loop.index }}</h3>
           <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>

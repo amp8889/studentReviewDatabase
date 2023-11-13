@@ -32,10 +32,10 @@ def index():
 # Invalid route(s) or server error
 @main_bp.errorhandler(404)
 def page_not_found(e):
-    return render_template("404.html",form=SearchForm), 404
+    return render_template("404.html"), 404
 @main_bp.errorhandler(500)
 def page_not_found(e):
-    return render_template("500.html",form=SearchForm), 500
+    return render_template("500.html"), 500
 
 
 @main_bp.route('/f_users_posts/delete/<string:post_type>/<int:post_id>')
@@ -378,8 +378,8 @@ def search():
         Class.description.like(f'%{search_query}%')
     )).all()
     
-    results = [{'id': professor.id, 'name': professor.name, 'type': 'Professor'} for professor in professor_results]
-    results.extend([{'id': course.id, 'name': course.name, 'type': 'Course'} for course in class_results])
+    results = [{'id': professor.id, 'name': professor.name, 'type': 'Professor', 'description': professor.description} for professor in professor_results]
+    results.extend([{'id': course.id, 'name': course.name, 'type': 'Course', 'description':course.description, 'class_name': course.class_name} for course in class_results])
 
     return render_template('search.html', form=form, searched=search_query, results=results)
 
@@ -455,15 +455,13 @@ def f_class(course_name,searched):
 
         # Save the review to the database or perform other necessary actions
         # You can create a Review model and save the review data to the database here
-        reviews = Class_Posts.query.filter_by(class_name=course_name).all()
-        course_list = Class.query.order_by(Class.id)
+        course_list = Class_Posts.query.filter_by(class_name=course_name).all()
+
 
     else:
         description = None  # Set to None for a blank page
-        course_list = Class.query.order_by(Class.id)
-        reviews = []
-        
-    return render_template('f_class.html', course_description=description, course_name=course_name, form=form,reviews=reviews, course_list=course_list,searched=search_boolean)
+        course_list = Class.query.order_by(Class.id)    
+        return render_template('f_class.html', course_description=description, course_name=course_name, form=form, course_list=course_list,searched=search_boolean)
 
 @main_bp.route('/f_users_posts/<username>')
 @login_required  # Requires the user to be logged in

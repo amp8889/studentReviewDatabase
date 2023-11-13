@@ -50,9 +50,36 @@
             {% for result in results %}
             <div class="search-result">
               {% if result.type == 'Course' %}
-                <a href="{{ url_for('main.f_class', course_name=result.name, searched=True) }}">{{ result.name }}</a>
+                <section class="classSection" id="classDescSection">
+                  <li>
+                    <section class="classReviews">
+                      <h3 class="reviewTitle">                     
+                         <a href="{{ url_for('main.f_class', course_name=result.name, searched=True) }}">
+                          {{ result.name }} - {{result.class_name}}
+                         </a>
+                       </h3>
+                      <p class="reviewDesc">{{ result.description }}</p>
+                    </section>
+                  </li>
+                  </ul>
+                </section>  
+              
               {% elif result.type == 'Professor' %}
-                <a href="{{ url_for('main.f_professors', professor_name=result.name, searched=True) }}">{{ result.name }}</a>
+                <section class="classSection" id="classDescSection">
+                  <li>
+                    <section class="classReviews">
+                      <h3 class="reviewTitle">
+                        <a href="{{ url_for('main.f_professors', professor_name=result.name, searched=True) }}">
+                          {{ result.name }}
+
+                        </a>
+                      </h3>
+                      <p class="reviewDesc">{{ result.description }}</p>
+                    </section>
+                  </li>
+                  </ul>
+                </section>  
+                  
 
               {% endif %}
             </div>

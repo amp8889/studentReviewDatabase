@@ -79,7 +79,8 @@
       <h2>Class Description</h2>
       <p>{{ course_description }}</p>
       {% else %}
-      <h2>Class Description</h2></br>
+      <h2>Class Descriptions</h2>
+      <ul class="descriptions"">
       {% for c in course_list %}
       <li>
         <section class="classReviews">
@@ -96,8 +97,6 @@
 
     <section class="classSection" id="classReviewSection">
       <h2>Recent Reviews</h2>
-      </br>
-      </br>
 
       <div class="classReviewsContainer">
         {% for review in reviews %}

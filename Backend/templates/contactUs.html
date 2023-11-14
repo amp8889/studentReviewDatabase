@@ -20,32 +20,33 @@
 
 <body>
   <header id="header">
-    <h1>Professor Add Page</h1>
+    <h1>Welcome to Course-Reviewer!</h1>
     <nav id="site-nav">
       <ul>
         <li>
-          <h3><a href=""></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3>
+          <h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3>
         </li>
-        <li class="nav-item"><a class="nav-link" href="">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Classes</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Professors</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
 
-        <li class="nav-item"><a class="nav-link" href="">Help</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Account</a></li> <!-- Updated href attribute -->
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li>
+        <!-- Updated href attribute -->
         {% if current_user.is_authenticated %}
-        <li class="nav-item"><a class="nav-link" href="">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
         {% if current_user.username == 'admin' %}
-        <li class="nav-item"><a class="nav-link" href="">Add Classes</a></li>
-        <li class="nav-item"><a class="nav-link" href="">Add Professors</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
         {% endif %}
         {% else %}
-        <li class="nav-item"><a class="nav-link" href="">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
 
         {% endif %}
         <li>
-          <form method="POST" action="">
+          <form method="POST" action="{{url_for('main.search')}}">
             <div class="search-container">
-
+              {{form.hidden_tag()}}
               <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
               <button id="searchButton" type="submit">Search</button>
             </div>

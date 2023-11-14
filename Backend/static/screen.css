@@ -46,6 +46,13 @@ footer {
 
 }
 
+li{
+
+
+    list-style-type: none;
+
+}
+
 footer ul{
 
     list-style-type: none;

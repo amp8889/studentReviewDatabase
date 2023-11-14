@@ -343,7 +343,9 @@ def f_edit_post(post_type, id):
     is_professor_review = (post_type == 'professor')
     return render_template('f_edit_post.html', form=form, is_professor_review=is_professor_review)
 
-
+@main_bp.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
 
 # F_HELP
 @main_bp.route('/f_help')

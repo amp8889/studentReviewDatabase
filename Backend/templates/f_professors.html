@@ -84,7 +84,11 @@ display: block; /* Block display to fill the width */
         {% for p in professors %}
         <li>
           <section class="classReviews">
-            <h3 class="reviewTitle">{{ p.name }}</h3>
+            <h3 class="reviewTitle">
+              <a href="{{ url_for('main.f_professors', professor_name=p.name, searched=True) }}">
+                {{ p.name }}
+              </a>
+            </h3>
             <p class="reviewDesc">{{ p.description }}</p>
           </section>
         </li>

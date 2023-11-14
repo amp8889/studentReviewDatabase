@@ -347,6 +347,10 @@ def f_edit_post(post_type, id):
 def aboutus():
     return render_template('aboutus.html')
 
+@main_bp.route('/ourmission')
+def ourMission():
+    return render_template('ourMission.html')
+
 # F_HELP
 @main_bp.route('/f_help')
 def f_help():

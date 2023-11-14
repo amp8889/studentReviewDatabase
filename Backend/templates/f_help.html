@@ -1,96 +1,103 @@
 <!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
-      <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet"type = "text/css" href="{{ url_for('static',filename='screen.css') }}"/>
-    </head>
-      <body>
-        <header id="header">
-          <h1>Help Page</h1>
-          <nav id="site-nav">
-            <ul>
-              <li><h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
-    
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
-              {% if current_user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
-              {% if current_user.username == 'admin' %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
-              {% endif %}
-              {% else %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
-      
-              {% endif %}
-              <li>
-                <form method="POST" action="{{url_for('main.search')}}">
-                  <div class="search-container">
-                    {{form.hidden_tag()}}
-                  <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
-                  <button id="searchButton" type="submit">Search</button>
-                  </div>
-                </form>
-              </li>
-              
-            </ul>
-            </nav>
-        </header>
-        <main id="content">
-          <section id="content">
-            <section id="faq">
-              <h3>Frequently Asked Questions</h3>
-             <br/>
-      
-              <div class="faq-item">
-                  <h4 class="faq-question">Is my personal information secure?</h4>
-                  <p class="faq-answer">Yes, we take your privacy seriously. Your personal information is encrypted and stored securely.</p>
-              </div>
-      
-              <div class="faq-item">
-                  <h4 class="faq-question">How can I contact customer support?</h4>
-                  <p class="faq-answer">You can contact our customer support team by emailing support@example.com or calling 1-800-123-4567.</p>
-              </div>
-          </section>
-            <section id="issue-report">
-              <h3>Report an Issue</h3>
-              <form id="issue-form" action="/submit_issue" method="post">
-                  <label for="issue-type">Issue Type:</label>
-                  <select id="issue-type" name="issue-type" required>
-                      <option value="bug">Bug</option>
-                      <option value="feature-request">Feature Request</option>
-                      <option value="other">Other</option>
-                  </select>
-      
-                  <label for="issue-description">Description:</label>
-                  <textarea id="issue-description" name="issue-description" rows="4" required></textarea>
-      
-                  <button type="submit">Submit Issue</button>
-              </form>
-          </section>
-    
-        </section>
-        </main>
-        <footer id="footer">
-        
-          <ul>
-              <li>About us</li>
-              <li>Our Mission</li>
-              <li>Help</li>
-              <li>Contact Us</li>
-              <li>Future Plans</li>
-  
-  
-  
-          </ul>
-      <p>Site content for Course Reviewer (Group E)</p>
-      </footer>
-    </body>
-  </html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='screen.css') }}" />
+</head>
+
+<body>
+  <header id="header">
+    <h1>Help Page</h1>
+    <nav id="site-nav">
+      <ul>
+        <li>
+          <h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li>
+        <!-- Updated href attribute -->
+        {% if current_user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
+        {% if current_user.username == 'admin' %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
+        {% endif %}
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
+
+        {% endif %}
+        <li>
+          <form method="POST" action="{{url_for('main.search')}}">
+            <div class="search-container">
+              {{form.hidden_tag()}}
+              <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
+              <button id="searchButton" type="submit">Search</button>
+            </div>
+          </form>
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+  <main id="content">
+    <section id="content">
+      <section id="faq">
+        <h3>Frequently Asked Questions</h3>
+        <br />
+
+        <div class="faq-item">
+          <h4 class="faq-question">Is my personal information secure?</h4>
+          <p class="faq-answer">Yes, we take your privacy seriously. Your personal information is encrypted and stored
+            securely.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">How can I contact customer support?</h4>
+          <p class="faq-answer">You can contact our customer support team by emailing support@example.com or calling
+            1-800-123-4567.</p>
+        </div>
+      </section>
+      <section id="issue-report">
+        <h3>Report an Issue</h3>
+        <form id="issue-form" action="/submit_issue" method="post">
+          <label for="issue-type">Issue Type:</label>
+          <select id="issue-type" name="issue-type" required>
+            <option value="bug">Bug</option>
+            <option value="feature-request">Feature Request</option>
+            <option value="other">Other</option>
+          </select>
+
+          <label for="issue-description">Description:</label>
+          <textarea id="issue-description" name="issue-description" rows="4" required></textarea>
+
+          <button type="submit">Submit Issue</button>
+        </form>
+      </section>
+
+    </section>
+  </main>
+  <footer id="footer">
+
+    <ul>
+      <li><a href="{{ url_for('main.aboutus') }}">About Us</a></li>
+      <li><a href="{{ url_for('main.ourMission') }}">Our Mission</a></li>
+      <li><a href="{{ url_for('main.contactUs') }}">Contact Us</a></li>
+      <li><a href="{{ url_for('main.futurePlans') }}">Future Plans</a></li>
+
+
+
+    </ul>
+    <p>Site content for Course Reviewer (Group E)</p>
+  </footer>
+</body>
+
+</html>

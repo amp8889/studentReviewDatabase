@@ -83,11 +83,12 @@
       {% for c in course_list %}
       <li>
         <section class="classReviews">
-          <h3 class="reviewTitle">                     
+          <h3 class="reviewTitle">
             <a href="{{ url_for('main.f_class', course_name=c.name, searched=True) }}">
-             {{ c.name }} - {{c.class_name}}
+              {{ c.name }} - {{c.class_name}}
             </a>
-          </h3>          <p class="reviewDesc">{{ c.description }}</p>
+          </h3>
+          <p class="reviewDesc">{{ c.description }}</p>
         </section>
       </li>
       {% endfor %}
@@ -97,7 +98,7 @@
 
 
 
-     <section class="classSection" id="classReviewSection">
+    <section class="classSection" id="classReviewSection">
       <h2>Recent Reviews</h2>
 
       <div class="classReviewsContainer">
@@ -144,11 +145,10 @@
   <footer id="footer">
 
     <ul>
-      <li>About us</li>
-      <li>Our Mission</li>
-      <li>Help</li>
-      <li>Contact Us</li>
-      <li>Future Plans</li>
+      <li><a href="{{ url_for('main.aboutus') }}">About Us</a></li>
+      <li><a href="{{ url_for('main.ourMission') }}">Our Mission</a></li>
+      <li><a href="{{ url_for('main.contactUs') }}">Contact Us</a></li>
+      <li><a href="{{ url_for('main.futurePlans') }}">Future Plans</a></li>
 
 
 

@@ -146,11 +146,10 @@ display: block; /* Block display to fill the width */
   <footer id="footer">
 
     <ul>
-      <li>About us</li>
-      <li>Our Mission</li>
-      <li>Help</li>
-      <li>Contact Us</li>
-      <li>Future Plans</li>
+      <li><a href="{{ url_for('main.aboutus') }}">About Us</a></li>
+      <li><a href="{{ url_for('main.ourMission') }}">Our Mission</a></li>
+      <li><a href="{{ url_for('main.contactUs') }}">Contact Us</a></li>
+      <li><a href="{{ url_for('main.futurePlans') }}">Future Plans</a></li>
 
 
 

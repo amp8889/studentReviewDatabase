@@ -23,35 +23,39 @@
         <h1>Class Page: {{ course_name }}</h1>
         <nav id="site-nav">
             <ul>
-              <li><h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
-    
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
-              {% if current_user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
-              {% if current_user.username == 'admin' %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
-              {% endif %}
-              {% else %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
-      
-              {% endif %}
-              <li>
-                <form method="POST" action="{{url_for('main.search')}}">
-                  <div class="search-container">
-                    {{form.hidden_tag()}}
-                  <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
-                  <button id="searchButton" type="submit">Search</button>
-                  </div>
-                </form>
-              </li>
-              
+                <li>
+                    <h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png"
+                            alt="Class Champion Logo"></a></h3>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li>
+                <!-- Updated href attribute -->
+                {% if current_user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
+                {% if current_user.username == 'admin' %}
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
+                {% endif %}
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
+
+                {% endif %}
+                <li>
+                    <form method="POST" action="{{url_for('main.search')}}">
+                        <div class="search-container">
+                            {{form.hidden_tag()}}
+                            <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
+                            <button id="searchButton" type="submit">Search</button>
+                        </div>
+                    </form>
+                </li>
+
             </ul>
-            </nav>
+        </nav>
     </header>
     <main id="content">
         <section class="classSection" id="classReviewSection">
@@ -71,9 +75,11 @@
 
                     <!-- Edit and Delete Buttons for the student's reviews -->
                     <div class="edit-delete-buttons">
-                        <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='class') }}" class="edit-link">Edit</a>
-                        <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='class') }}" class="delete-link">Delete</a>
-                        
+                        <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='class') }}"
+                            class="edit-link">Edit</a>
+                        <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='class') }}"
+                            class="delete-link">Delete</a>
+
                     </div>
                 </section>
                 {% endfor %}
@@ -88,9 +94,11 @@
 
                     <!-- Edit and Delete Buttons for the student's reviews -->
                     <div class="edit-delete-buttons">
-                        <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='professor') }}" class="edit-link">Edit</a>
-                        <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='professor') }}" class="delete-link">Delete</a>
-                        
+                        <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='professor') }}"
+                            class="edit-link">Edit</a>
+                        <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='professor') }}"
+                            class="delete-link">Delete</a>
+
                     </div>
                 </section>
                 {% endfor %}
@@ -103,19 +111,19 @@
         </section>
     </main>
     <footer id="footer">
-        
+
         <ul>
-            <li>About us</li>
-            <li>Our Mission</li>
-            <li>Help</li>
-            <li>Contact Us</li>
-            <li>Future Plans</li>
+            <li><a href="{{ url_for('main.aboutus') }}">About Us</a></li>
+            <li><a href="{{ url_for('main.ourMission') }}">Our Mission</a></li>
+            <li><a href="{{ url_for('main.contactUs') }}">Contact Us</a></li>
+            <li><a href="{{ url_for('main.futurePlans') }}">Future Plans</a></li>
 
 
 
         </ul>
-    <p>Site content for Course Reviewer (Group E)</p>
+        <p>Site content for Course Reviewer (Group E)</p>
     </footer>
 </body>
+
 </html>
 {% endblock %}

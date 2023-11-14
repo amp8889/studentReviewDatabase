@@ -83,8 +83,11 @@
       {% for c in course_list %}
       <li>
         <section class="classReviews">
-          <h3 class="reviewTitle">{{ c.name }} - {{c.class_name}}</h3>
-          <p class="reviewDesc">{{ c.description }}</p>
+          <h3 class="reviewTitle">                     
+            <a href="{{ url_for('main.f_class', course_name=c.name, searched=True) }}">
+             {{ c.name }} - {{c.class_name}}
+            </a>
+          </h3>          <p class="reviewDesc">{{ c.description }}</p>
         </section>
       </li>
       {% endfor %}

@@ -534,10 +534,10 @@ def addClass():
 
     return render_template("addClass.html", form=form)
 
-@main_bp.before_request
-def before_request():
-    if not current_user.is_authenticated and request.endpoint != 'main.f_login':
-        return redirect(url_for('main.f_login'))
+# @main_bp.before_request
+# def before_request():
+#     if not current_user.is_authenticated and request.endpoint != 'main.f_login':
+#         return redirect(url_for('main.f_login'))
     # else:
     #     # Log the user out automatically
     #     f_logout()

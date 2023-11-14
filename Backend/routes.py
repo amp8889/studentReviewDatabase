@@ -39,7 +39,11 @@ def page_not_found(e):
 
 @main_bp.route('/aboutus')
 def aboutus():
-    return render_template('aboutus.html')
+    return render_template('aboutUs.html')
+
+@main_bp.route('/ourmission')
+def aboutus():
+    return render_template('ourMission.html')
 
 @main_bp.route('/f_users_posts/delete/<string:post_type>/<int:post_id>')
 @login_required

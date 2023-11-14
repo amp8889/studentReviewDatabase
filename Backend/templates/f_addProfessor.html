@@ -1,88 +1,98 @@
 <!DOCTYPE html>
 {% block content %}
-  <html lang="en">
+<html lang="en">
 
-    {% for message in get_flashed_messages() %}
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  {{ message }}
-	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	</div>
-    {% endfor %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
 
-    {% if name %}
-	<h1>User Added!</h1>
-	<br/><br/>
-    {% else %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
-    <head>
-        <meta charset="utf-8" />
-        <title>Professor Registration</title>
-        <link rel="stylesheet"type = "text/css" href="{{ url_for('static',filename='screen.css') }}"/>
-    </head>
-    <body>
-        <header id="header">
-            <h1>Professor Registration</h1>
-            <nav id="site-nav">
-                <ul>
-                  <li><h3><a href="{{url_for('main.index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
-                  </ul>
-                  </nav>
-          </header>
-        <main id="content">
-            <section>
-                <p>Welcome to the Professor Registration page</p>
-                <p>Please enter the following credentials for registration</p>
-                <br/>
-                <form method="POST" action="{{ url_for('main.f_addProfessor') }}">
-                    {{ form.hidden_tag() }}
-                    
-                    {{ form.name.label(class="form-label") }}
-                    {{ form.name(id="Full_Name", class="form-control", placeholder="Enter your Name", required="required") }}
-                    
-                    {{ form.username.label(class="form-label") }}
-                    {{ form.username(id="Username", class="form-control", placeholder="Enter your Username", required="required") }}    
+{% if name %}
+<h1>User Added!</h1>
+<br /><br />
+{% else %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
 
-                    {{ form.email.label(class="form-label") }}
-                    {{ form.email(id="email", class="form-control", placeholder="Enter your Email", required="required") }}
-                
-                    {{ form.teacher_id.label(class="form-label") }}
-                    {{ form.teacher_id(id="ID_Number", class="form-control", placeholder="Enter your Teacher ID", required="required") }}
-                
-                    {{ form.birthday.label(class="form-label") }}
-                    {{ form.birthday(id="Birthday", class="form-control", type="date", required="required") }}
-                
-                    {{ form.school_id.label(class="form-label") }}
-                    {{ form.school_id(id="School", class="form-control", placeholder="Enter your School", required="required") }}
-                
-                    {{ form.password_hash.label(class="form-label") }}
-                    {{ form.password_hash(id="Password1", class="form-control", placeholder="Enter your Password", required="required") }}
-                
-                    {{ form.password_hash2.label(class="form-label") }}
-                    {{ form.password_hash2(id="Password2", class="form-control", placeholder="Retype Password", required="required") }}
-                    <br/>
-                    {{ form.submit(class="btn btn-secondary") }}
-                </form>
+<head>
+    <meta charset="utf-8" />
+    <title>Professor Registration</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='screen.css') }}" />
+</head>
 
-            </section>
-        </main>
-        <footer id="footer">
-        
+<body>
+    <header id="header">
+        <h1>Professor Registration</h1>
+        <nav id="site-nav">
             <ul>
-                <li>About us</li>
-                <li>Our Mission</li>
-                <li>Help</li>
-                <li>Contact Us</li>
-                <li>Future Plans</li>
-    
-    
-    
+                <li>
+                    <h3><a href="{{url_for('main.index')}}"> <img src="/static/icon.png" alt="Class Champion Logo"></a>
+                    </h3>
+                </li>
             </ul>
+        </nav>
+    </header>
+    <main id="content">
+        <section>
+            <p>Welcome to the Professor Registration page</p>
+            <p>Please enter the following credentials for registration</p>
+            <br />
+            <form method="POST" action="{{ url_for('main.f_addProfessor') }}">
+                {{ form.hidden_tag() }}
+
+                {{ form.name.label(class="form-label") }}
+                {{ form.name(id="Full_Name", class="form-control", placeholder="Enter your Name", required="required")
+                }}
+
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(id="Username", class="form-control", placeholder="Enter your Username",
+                required="required") }}
+
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(id="email", class="form-control", placeholder="Enter your Email", required="required") }}
+
+                {{ form.teacher_id.label(class="form-label") }}
+                {{ form.teacher_id(id="ID_Number", class="form-control", placeholder="Enter your Teacher ID",
+                required="required") }}
+
+                {{ form.birthday.label(class="form-label") }}
+                {{ form.birthday(id="Birthday", class="form-control", type="date", required="required") }}
+
+                {{ form.school_id.label(class="form-label") }}
+                {{ form.school_id(id="School", class="form-control", placeholder="Enter your School",
+                required="required") }}
+
+                {{ form.password_hash.label(class="form-label") }}
+                {{ form.password_hash(id="Password1", class="form-control", placeholder="Enter your Password",
+                required="required") }}
+
+                {{ form.password_hash2.label(class="form-label") }}
+                {{ form.password_hash2(id="Password2", class="form-control", placeholder="Retype Password",
+                required="required") }}
+                <br />
+                {{ form.submit(class="btn btn-secondary") }}
+            </form>
+
+        </section>
+    </main>
+    <footer id="footer">
+
+        <ul>
+            <li><a href="{{ url_for('main.aboutus') }}">About Us</a></li>
+            <li><a href="{{ url_for('main.ourMission') }}">Our Mission</a></li>
+            <li><a href="{{ url_for('main.contactUs') }}">Contact Us</a></li>
+            <li><a href="{{ url_for('main.futurePlans') }}">Future Plans</a></li>
+
+
+
+        </ul>
         <p>Site content for Course Reviewer (Group E)</p>
-        </footer>
-    </body>
-    
+    </footer>
+</body>
+
 </html>
 {% endif %}
 

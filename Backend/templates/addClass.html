@@ -1,94 +1,99 @@
 <!DOCTYPE html>
 {% block content %}
-  <html lang="en">
+<html lang="en">
 
-    {% for message in get_flashed_messages() %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    {% endfor %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
-      <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet"type = "text/css" href="{{ url_for('static',filename='screen.css') }}"/>
-      </head>
-      <body>
-        <header id="header">
-          <h1>Class Add Page</h1>
-          <nav id="site-nav">
-            <ul>
-              <li><h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
-    
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li> <!-- Updated href attribute -->
-              {% if current_user.is_authenticated %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
-              {% if current_user.username == 'admin' %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
-              {% endif %}
-              {% else %}
-              <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
-      
-              {% endif %}
-              <li>
-                <form method="POST" action="{{url_for('main.search')}}">
-                  <div class="search-container">
-                    {{form.hidden_tag()}}
-                  <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
-                  <button id="searchButton" type="submit">Search</button>
-                  </div>
-                </form>
-              </li>
-              
-            </ul>
-            </nav>
-        </header>
-        <main id="content">    
-            <section class="classSection" id="review-container">
-              <h1>Make the Class</h1>
-              <form id="review-form" method="POST">
-                  {{ form.hidden_tag() }}  {# Add the CSRF token #}
-                  
-                  <label for="class_name">Class Name:</label>
-                  {{ form.class_name(class="your-css-class") }}
-          
-                  <label for="class_number">Class Number(ex. CS422):</label>
-                  {{ form.name(class="your-css-class") }}
-          
-                  <label for="description">Class Description:</label>
-                  {{ form.description(class="your-css-class") }}
-          
-                  <button type="submit" id="subRevBtn" onclick="this.disabled=true;this.form.submit();">Submit Class</button>
-    
-              </form>
-          </section>
-          
-          
-          
-    
-        </main>
-        <footer id="footer">
-        
-          <ul>
-              <li>About us</li>
-              <li>Our Mission</li>
-              <li>Help</li>
-              <li>Contact Us</li>
-              <li>Future Plans</li>
-  
-  
-  
-          </ul>
-      <p>Site content for Course Reviewer (Group E)</p>
-      </footer>
-    </body>
-  </html>
-  {% endblock %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mooli&display=swap" rel="stylesheet">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='screen.css') }}" />
+</head>
+
+<body>
+  <header id="header">
+    <h1>Class Add Page</h1>
+    <nav id="site-nav">
+      <ul>
+        <li>
+          <h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li>
+        <!-- Updated href attribute -->
+        {% if current_user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}">Logout</a></li>
+        {% if current_user.username == 'admin' %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.addClass')}}">Add Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.addProfessor')}}">Add Professors</a></li>
+        {% endif %}
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_login')}}">Login</a></li>
+
+        {% endif %}
+        <li>
+          <form method="POST" action="{{url_for('main.search')}}">
+            <div class="search-container">
+              {{form.hidden_tag()}}
+              <input type="text" name="searched" class="form-control me-2" placeholder="Class/Professor">
+              <button id="searchButton" type="submit">Search</button>
+            </div>
+          </form>
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+  <main id="content">
+    <section class="classSection" id="review-container">
+      <h1>Make the Class</h1>
+      <form id="review-form" method="POST">
+        {{ form.hidden_tag() }} {# Add the CSRF token #}
+
+        <label for="class_name">Class Name:</label>
+        {{ form.class_name(class="your-css-class") }}
+
+        <label for="class_number">Class Number(ex. CS422):</label>
+        {{ form.name(class="your-css-class") }}
+
+        <label for="description">Class Description:</label>
+        {{ form.description(class="your-css-class") }}
+
+        <button type="submit" id="subRevBtn" onclick="this.disabled=true;this.form.submit();">Submit Class</button>
+
+      </form>
+    </section>
+
+
+
+
+  </main>
+  <footer id="footer">
+
+    <ul>
+      <li><a href="{{ url_for('main.aboutus') }}">About Us</a></li>
+      <li><a href="{{ url_for('main.ourMission') }}">Our Mission</a></li>
+      <li><a href="{{ url_for('main.contactUs') }}">Contact Us</a></li>
+      <li><a href="{{ url_for('main.futurePlans') }}">Future Plans</a></li>
+
+
+
+    </ul>
+    <p>Site content for Course Reviewer (Group E)</p>
+  </footer>
+</body>
+
+</html>
+{% endblock %}

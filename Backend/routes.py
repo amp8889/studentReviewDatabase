@@ -351,6 +351,10 @@ def aboutus():
 def ourMission():
     return render_template('ourMission.html')
 
+@main_bp.route('/contactus')
+def contactUs():
+    return render_template('contactUs.html')
+
 # F_HELP
 @main_bp.route('/f_help')
 def f_help():

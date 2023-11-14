@@ -91,9 +91,12 @@
 
           <!-- Edit and Delete Buttons for the student's reviews -->
           <div class="edit-delete-buttons">
-            <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='class') }}" class="edit-link">Edit</a>
+            <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='class') }}" class="edit-link">
+              <button class="small-button">Edit</button>
+              </a>
             <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='class') }}"
-              class="delete-link">Delete</a>
+              class="delete-link">        <button class="small-button">Delete</button>
+            </a>
 
           </div>
         </section>

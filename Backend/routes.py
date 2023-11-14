@@ -37,13 +37,6 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template("500.html"), 500
 
-@main_bp.route('/aboutus')
-def aboutus():
-    return render_template('aboutUs.html')
-
-@main_bp.route('/ourmission')
-def aboutus():
-    return render_template('ourMission.html')
 
 @main_bp.route('/f_users_posts/delete/<string:post_type>/<int:post_id>')
 @login_required
@@ -462,17 +455,13 @@ def f_class(course_name,searched):
 
         # Save the review to the database or perform other necessary actions
         # You can create a Review model and save the review data to the database here
-        reviews = Class_Posts.query.filter_by(class_name=course_name).all()
-        course_list = Class.query.order_by(Class.id)
-
-        return render_template('f_class.html', course_description=description, course_name=course_name, form=form, reviews=reviews,course_list=course_list,searched=search_boolean)
+        course_list = Class_Posts.query.filter_by(class_name=course_name).all()
 
 
     else:
         description = None  # Set to None for a blank page
-        course_list = Class.query.order_by(Class.id)
-        reviews = []
-        return render_template('f_class.html', course_description=description, course_name=course_name, form=form, reviews=reviews,course_list=course_list,searched=search_boolean)
+        course_list = Class.query.order_by(Class.id)    
+        return render_template('f_class.html', course_description=description, course_name=course_name, form=form, course_list=course_list,searched=search_boolean)
 
 @main_bp.route('/f_users_posts/<username>')
 @login_required  # Requires the user to be logged in

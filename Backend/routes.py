@@ -37,6 +37,9 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template("500.html"), 500
 
+@main_bp.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
 
 @main_bp.route('/f_users_posts/delete/<string:post_type>/<int:post_id>')
 @login_required

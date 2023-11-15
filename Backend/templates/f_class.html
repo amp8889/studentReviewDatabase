@@ -20,7 +20,13 @@
 
 <body>
   <header id="header">
-    <h1>Class Page: {{ course_name }}</h1>
+    <h1>
+      {% if course_name %}
+        Class Page: {{ course_name }}
+      {%else%}
+        Classes
+      {% endif %}
+    </h1>
     <nav id="site-nav">
       <ul>
         <li>

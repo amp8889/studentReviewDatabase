@@ -83,10 +83,10 @@ display: block; /* Block display to fill the width */
   <main id="content">
     <section class="classSection" id="classDescSection">
       {% if searched == true %}
-      <h2>Professor Description</h2>
-      <p>{{ prof_description }}</p>
+      <h2>Professor Description</h2></br>
+      <p>{{ prof_description }}</p></br>
       {% else %}
-      <h2>Professors Descriptions</h2>
+      <h2>Professors Descriptions</h2></br>
       <ul>
         {% for p in professors %}
         <li>
@@ -107,8 +107,7 @@ display: block; /* Block display to fill the width */
     <section class="classSection" id="classReviewSection">
       <h2>Recent Reviews</h2>
       </br>
-      </br>
-
+      
       <div class="classReviewsContainer">
         {% for review in reviews %}
         <section class="classReviews">

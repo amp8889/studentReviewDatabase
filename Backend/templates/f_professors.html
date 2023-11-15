@@ -20,7 +20,14 @@
 
 <body>
   <header id="header">
-    <h1>Professor Reviews Page</h1>
+    <h1>
+      {% if professor_name %}
+      Professor: {{professor_name }}
+      {%else%}
+      Professor Reviews Page
+      {%endif%}
+
+    </h1>
     <nav id="site-nav">
       <ul>
         <li>

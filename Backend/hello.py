@@ -22,7 +22,7 @@ from routes import main_bp
 #  Initializing Flask app and configurations
 app = Flask(__name__, static_folder="static")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:12345678@public-database.ckceiladqgeo.us-east-1.rds.amazonaws.com/our_users'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:TRZFxAXg015C7lg@ipro2.ckceiladqgeo.us-east-1.rds.amazonaws.com/our_users'
 app.config['SECRET_KEY'] = "4x786kj4fRt98jIq"
 db.init_app(app)
 migrate = Migrate(app, db)

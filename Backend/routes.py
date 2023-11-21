@@ -92,7 +92,13 @@ def login():
 @main_bp.route('/logout', methods= ['GET', 'POST'])
 @login_required
 def logout():
-    logout_user()
+    user_role = session.get('user_role')
+    print(user_role)  # For debugging purposes
+    
+    # Remove user_role from the session when the user logs out
+    session.pop('user_role', None)
+    user_role = session.get('user_role')
+    print(user_role)  # For debugging purposes
     # flash("You are now logged out")
     return redirect(url_for('main.f_login'))
 
@@ -216,6 +222,8 @@ def f_login():
 @main_bp.route('/f_logout', methods= ['GET', 'POST'])
 @login_required
 def f_logout():
+    session.pop('user_role', None)
+    print(session.user_role)
     logout_user()
     # flash("You are now logged out")
     return redirect(url_for('main.f_login'))

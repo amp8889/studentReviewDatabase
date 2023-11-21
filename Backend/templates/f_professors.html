@@ -34,9 +34,10 @@
           <h3><a href="{{ url_for('main.index') }}"></a><img src="/static/icon.png" alt="Class Champion Logo"></a></h3>
         </li>
         <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">Home</a></li>
+        {% if session.get('user_role') == 'student' %}
         <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_class')}}">Classes</a></li>
         <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_professors')}}">Professors</a></li>
-
+        {% endif %}
         <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_help')}}">Help</a></li>
         <li class="nav-item"><a class="nav-link" href="{{url_for('main.f_dashboard')}}">Account</a></li>
         <!-- Updated href attribute -->

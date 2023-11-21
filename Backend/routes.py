@@ -27,9 +27,15 @@ def default():
 
 @main_bp.route('/index') #Homepage
 def index():
-    reviews_table1 = Professor_Posts.query.order_by(Professor_Posts.rating.desc()).limit(5).all()
-    reviews_table2 = Class_Posts.query.order_by(Class_Posts.rating.desc()).limit(5).all()
-    return render_template('index.html', professor_posts=reviews_table1, class_posts=reviews_table2)
+    user_role = session.get('user_role')
+    if current_user.is_authenticated and user_role == 'professor':
+        # If the logged-in user is a professor, fetch their specific reviews
+        professor_reviews = Professor_Posts.query.filter_by(professor_name=current_user.name).order_by(Professor_Posts.rating.desc()).limit(5).all()
+        return render_template('index.html', professor_posts=professor_reviews, class_posts=None)
+    else:
+        reviews_table1 = Professor_Posts.query.order_by(Professor_Posts.rating.desc()).limit(5).all()
+        reviews_table2 = Class_Posts.query.order_by(Class_Posts.rating.desc()).limit(5).all()
+        return render_template('index.html', professor_posts=reviews_table1, class_posts=reviews_table2)
 
 
 # Invalid route(s) or server error
@@ -92,14 +98,7 @@ def login():
 @main_bp.route('/logout', methods= ['GET', 'POST'])
 @login_required
 def logout():
-    user_role = session.get('user_role')
-    print(user_role)  # For debugging purposes
-    
-    # Remove user_role from the session when the user logs out
     session.pop('user_role', None)
-    user_role = session.get('user_role')
-    print(user_role)  # For debugging purposes
-    # flash("You are now logged out")
     return redirect(url_for('main.f_login'))
 
 # Profile

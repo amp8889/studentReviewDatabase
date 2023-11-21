@@ -10,6 +10,7 @@ Adam: AdamS pass:apple
 Snape: user:SSnape pass:Lily
 Lupin: user:RemusL pass:werewolf
 Smith: user:JSmith pass:doctor
+Jacek: user:JacekD pass: artificial
 
 ## Users/Admins:
 Admin: user:Admin pass:admin

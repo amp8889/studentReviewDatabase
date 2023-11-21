@@ -77,60 +77,77 @@
   <main id="content">
 
     <section class="classSection" id="classReviewSection">
+      
 
 
 
       <div class="classReviewsContainer">
-        <h3>Top Class Reviews</h3></br>
-        {% for review in class_posts %}
-        <section class="classReviews">
-          <h3 class="reviewTitle">Review {{ loop.index }}</h3>
-          <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>
-          <h4 class="reviewDate">{{ review.date_posted }}</h4>
-          <h4 class="reviewProf">{{ review.professor_name }}</h4>
-          <p class="reviewDesc">{{ review.content }}</p>
-
-          <!-- Edit and Delete Buttons for the student's reviews -->
-          <div class="edit-delete-buttons">
-            <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='class') }}" class="edit-link">
-              <button class="small-button">Edit</button>
-              </a>
-            <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='class') }}"
-              class="delete-link">        <button class="small-button">Delete</button>
-            </a>
-
-          </div>
-        </section>
-        {% endfor %}
-        <h3>Top Professor Reviews</h3></br>
+        {% if session.get('user_role') == 'professor' %}
+        <h3>Your Professor Reviews</h3></br>
         {% for review in professor_posts %}
-        <section class="classReviews">
-          <h3 class="reviewTitle">Review {{ loop.index }}</h3>
-          <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>
-          <h4 class="reviewDate">{{ review.date_posted }}</h4>
-          <h4 class="reviewProf">{{ review.professor_name }}</h4>
-          <p class="reviewDesc">{{ review.content }}</p>
-
-
-        </section>
+          <section class="classReviews">
+            <!-- Display professor's reviews -->
+            <h3 class="reviewTitle">Review {{ loop.index }}</h3>
+            <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>
+            <h4 class="reviewDate">{{ review.date_posted }}</h4>
+            <h4 class="reviewProf">{{ review.professor_name }}</h4>
+            <p class="reviewDesc">{{ review.content }}</p>
+          </section>
         {% endfor %}
-      </div>
+        {% else %}
+          <h3>Top Class Reviews</h3></br>
+          {% for review in class_posts %}
+          <section class="classReviews">
+            <h3 class="reviewTitle">Review {{ loop.index }}</h3>
+            <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>
+            <h4 class="reviewDate">{{ review.date_posted }}</h4>
+            <h4 class="reviewProf">{{ review.professor_name }}</h4>
+            <p class="reviewDesc">{{ review.content }}</p>
+
+              <!-- Edit and Delete buttons for student's own reviews -->
+              {% if current_user.is_authenticated and current_user.name == review.student_name %}
+                <div class="edit-delete-buttons">
+                  <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='class') }}" class="edit-link">
+                    <button class="small-button">Edit</button>
+                  </a>
+                  <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='class') }}" class="delete-link">
+                    <button class="small-button">Delete</button>
+                  </a>
+                </div>
+              {% endif %}
+          </section>
+          {% endfor %}
+          <h3>Top Professor Reviews</h3></br>
+          {% for review in professor_posts %}
+          <section class="classReviews">
+            <h3 class="reviewTitle">Review {{ loop.index }}</h3>
+            <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>
+            <h4 class="reviewDate">{{ review.date_posted }}</h4>
+            <h4 class="reviewProf">{{ review.professor_name }}</h4>
+            <p class="reviewDesc">{{ review.content }}</p>
+            {% if current_user.is_authenticated and current_user.name == review.student_name %}
+            <div class="edit-delete-buttons">
+              <a href="{{ url_for('main.f_edit_post', id=review.id, post_type='class') }}" class="edit-link">
+                <button class="small-button">Edit</button>
+              </a>
+              <a href="{{ url_for('main.delete_post', post_id=review.id, post_type='class') }}" class="delete-link">
+                <button class="small-button">Delete</button>
+              </a>
+            </div>
+          {% endif %}
+
+          </section>
+          {% endfor %}
+        </div>
 
       <section class="container">
         <button class="revButton" id="prevButton"><span>&#9664;</span> </button>
         <button class="revButton" id="nextButton"><span>&#9654;</span></button>
       </section>
     </section>
-
-
-
+    {% endif %}
   </main>
-
-
-
   <br />
-
-
   </section>
 
 

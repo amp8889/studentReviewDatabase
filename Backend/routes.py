@@ -21,6 +21,9 @@ from forms import *
 main_bp = Blueprint('main', __name__)
 ## Routes ##
 @main_bp.route('/') # Root
+def default():
+    return redirect(url_for('main.f_login'))
+
 
 @main_bp.route('/index') #Homepage
 def index():

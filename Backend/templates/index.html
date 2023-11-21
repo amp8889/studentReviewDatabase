@@ -90,7 +90,7 @@
             <h3 class="reviewTitle">Review {{ loop.index }}</h3>
             <h4 class="reviewRating">{{ review.rating }}/5 Stars</h4>
             <h4 class="reviewDate">{{ review.date_posted }}</h4>
-            <h4 class="reviewProf">{{ review.professor_name }}</h4>
+            <h4 class="reviewProf">{{ review.class_name }}</h4>
             <p class="reviewDesc">{{ review.content }}</p>
           </section>
         {% endfor %}

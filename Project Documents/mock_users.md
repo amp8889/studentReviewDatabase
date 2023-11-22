@@ -5,6 +5,7 @@ Jack: user:JackH pass:torchwood
 Clara: user:ClaraO pass:heart
 Jake: whytheburger pass:viking
 Adam: AdamS pass:apple
+Ben: BenJ pass: plane
 
 ## Users/Professors:
 Snape: user:SSnape pass:Lily
